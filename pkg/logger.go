@@ -4,14 +4,8 @@ import (
 	"log/slog"
 	"os"
 	"strings"
-	"sync"
 
 	"github.com/glebbeliaev/purple_dz/config"
-)
-
-var (
-	logger *slog.Logger
-	once   sync.Once
 )
 
 func MapToSlogLevel(levelStr string) slog.Level {
