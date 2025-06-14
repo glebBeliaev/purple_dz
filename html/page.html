@@ -1,0 +1,13 @@
+{{template "base"}}
+{{define "title"}}
+<title>Главная страница</title>
+{{end}}
+{{define "content"}}
+<p>Содержимое главной страницы</p>
+{{end}}
+
+{{if .IsAdmin}}
+<p>Admin</p>
+{{else}}
+<p>Not admin</p>
+{{end}}

@@ -10,20 +10,36 @@ type HomeHandler struct {
 	cusstomLogger *zerolog.Logger
 }
 
-func NewHomeHandler(router fiber.Router, customLogger *zerolog.Logger) *HomeHandler {
-	return &HomeHandler{
-		router:        router,
-		cusstomLogger: customLogger,
-	}
-
+type User struct {
+	Id   int
+	Name string
 }
-func (h *HomeHandler) Register() {
-	h.router.Get("/", func(c *fiber.Ctx) error {
-		h.cusstomLogger.Info().
-			Bool("test", true).
-			Str("test", "test").
-			Int("test", 1).
-			Msg("test")
-		return c.SendString("Hello, World!")
-	})
+
+func NewHandler(router fiber.Router) {
+	h := HomeHandler{
+		router: router,
+	}
+	api := h.router.Group("/api")
+	api.Get("/", h.home)
+	api.Get("/error", h.error)
+}
+
+func (h *HomeHandler) home(c *fiber.Ctx) error {
+	users := []User{
+		{Id: 1, Name: "Anton"},
+		{Id: 2, Name: "Vasia"},
+	}
+	names := []string{"Anton", "Vasia"}
+	data := struct {
+		Names []string
+		Users []User
+	}{
+		Names: names,
+		Users: users,
+	}
+	return c.Render("page", data)
+}
+
+func (h *HomeHandler) error(c *fiber.Ctx) error {
+	return c.SendString("Error")
 }
