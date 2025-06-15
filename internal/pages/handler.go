@@ -6,14 +6,23 @@ type HomeHandler struct {
 	router fiber.Router
 }
 
-func NewHomeHandler(router fiber.Router) *HomeHandler {
-	return &HomeHandler{
-		router: router,
-	}
-
+type Catalog struct {
+	CategoryName string
 }
-func (h *HomeHandler) Register() {
-	h.router.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
+
+func NewHomeHandler(router fiber.Router) *HomeHandler {
+	h := &HomeHandler{router: router}
+	h.registerRoutes()
+	return h
+}
+
+func (h *HomeHandler) registerRoutes() {
+	h.router.Get("/", h.handleHome)
+}
+
+func (h *HomeHandler) handleHome(c *fiber.Ctx) error {
+	categories := []string{"#Еда", "#Животные", "#Спорт", "#Музыка", "#Технологии", "#Другое"}
+	return c.Render("index", fiber.Map{
+		"Categories": categories,
 	})
 }
