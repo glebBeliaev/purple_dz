@@ -1,0 +1,26 @@
+package layout
+
+css headerClass(){
+    background: { "#222222" };
+    text-align: {"center"};
+    padding: {"40px 80px"};
+}
+
+templ Header() {
+    @HeaderStyle()
+    <div class={headerClass()}>
+    @Menu()
+    { children... }   
+    </div>  
+}
+
+templ HeaderStyle() {
+    <style>
+    .header{
+        background: #222222;
+        text-align: center;
+        padding: 40px 80px;  
+    }
+    </style>
+    
+}

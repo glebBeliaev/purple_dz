@@ -1,0 +1,44 @@
+package layout
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ Menu() {
+    @MenuStyle()
+    <div class="menu">   
+        <img src="/public/images/logo.svg"/>
+        <div class="menu_right">
+            <a class="menu_right-link">Войти</a>
+            @components.LinkButton("/register"){
+                <span>Зарегистрироваться</span>
+            }
+        </div>
+    </div>
+    
+}
+
+templ MenuStyle() {
+    <style>
+        .menu{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 0;
+                max-width: 1296px;
+                margin: auto;
+        }
+        .menu_right{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .menu_right-link{
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            color: #FFFFFF;
+        }
+        .menu_right-link:hover{
+            color: #10b989;
+        }
+    </style>
+}

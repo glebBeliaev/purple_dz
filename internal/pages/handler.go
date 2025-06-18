@@ -1,6 +1,8 @@
 package pages
 
 import (
+	"github.com/glebbeliaev/purple_dz/pkg/tadaptor"
+	"github.com/glebbeliaev/purple_dz/views"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 )
@@ -16,28 +18,17 @@ type User struct {
 }
 
 func NewHandler(router fiber.Router) {
-	h := HomeHandler{
+	h := &HomeHandler{
 		router: router,
 	}
-	api := h.router.Group("/api")
-	api.Get("/", h.home)
-	api.Get("/error", h.error)
+
+	h.router.Get("/", h.home)
+	h.router.Get("/404", h.error)
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	users := []User{
-		{Id: 1, Name: "Anton"},
-		{Id: 2, Name: "Vasia"},
-	}
-	names := []string{"Anton", "Vasia"}
-	data := struct {
-		Names []string
-		Users []User
-	}{
-		Names: names,
-		Users: users,
-	}
-	return c.Render("page", data)
+	component := views.Main()
+	return tadaptor.Render(c, component)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {
