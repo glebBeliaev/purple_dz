@@ -21,8 +21,7 @@ func main() {
 
 	app.Use(recover.New())
 	app.Use(slogfiber.New(logger))
-	homeGroup := app.Group("/")
-	pages.NewHomeHandler(homeGroup)
+	pages.NewHandler(app)
 
 	logger.Info("Server started")
 	app.Listen(":3000")

@@ -1,6 +1,10 @@
 package pages
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/glebbeliaev/purple_dz/pkg/tadapter"
+	"github.com/glebbeliaev/purple_dz/views"
+	"github.com/gofiber/fiber/v2"
+)
 
 type HomeHandler struct {
 	router fiber.Router
@@ -10,19 +14,20 @@ type Catalog struct {
 	CategoryName string
 }
 
-func NewHomeHandler(router fiber.Router) *HomeHandler {
-	h := &HomeHandler{router: router}
-	h.registerRoutes()
-	return h
+func NewHandler(router fiber.Router) {
+	h := &HomeHandler{
+		router: router,
+	}
+
+	h.router.Get("/", h.home)
+	h.router.Get("/404", h.error)
 }
 
-func (h *HomeHandler) registerRoutes() {
-	h.router.Get("/", h.handleHome)
+func (h *HomeHandler) home(c *fiber.Ctx) error {
+	component := views.Main("World")
+	return tadapter.Render(c, component)
 }
 
-func (h *HomeHandler) handleHome(c *fiber.Ctx) error {
-	categories := []string{"#Еда", "#Животные", "#Спорт", "#Музыка", "#Технологии", "#Другое"}
-	return c.Render("index", fiber.Map{
-		"Categories": categories,
-	})
+func (h *HomeHandler) error(c *fiber.Ctx) error {
+	return c.SendString("Error")
 }
