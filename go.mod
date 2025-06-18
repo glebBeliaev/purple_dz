@@ -10,6 +10,7 @@ require (
 )
 
 require (
+	github.com/a-h/templ v0.3.898 // indirect
 	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/gofiber/template v1.8.3 // indirect
 	github.com/gofiber/utils v1.1.0 // indirect
@@ -23,5 +24,5 @@ require (
 	github.com/valyala/fasthttp v1.59.0 // indirect
 	go.opentelemetry.io/otel v1.29.0 // indirect
 	go.opentelemetry.io/otel/trace v1.29.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
 )
