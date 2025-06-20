@@ -1,5 +1,74 @@
 package views
+  
+import "github.com/glebbeliaev/purple_dz/views/layout"
+import "github.com/glebbeliaev/purple_dz/views/components"
 
-templ Main(name string) {
-	<div>Hello, { name }</div>
+  
+templ Main() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "Новости - всё самое главное",
+        MetaDescription: "Сайт новостей",
+    }){
+    @MainStyle()
+    <main class="main-page">
+        @layout.Header()
+        @layout.TopTags(){
+            @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Еда",
+                Link: "",
+                Img: "/public/images/categories/categoryFood.png",
+            })
+             @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Животные",
+                Link: "",
+                Img: "/public/images/categories/categoryAnimal.png",
+            })
+             @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Машины",
+                Link: "",
+                Img: "/public/images/categories/categoryCars.png",
+            })
+             @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Спорт",
+                Link: "",
+                Img: "/public/images/categories/categorySport.png",
+            })
+             @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Музыка",
+                Link: "",
+                Img: "/public/images/categories/categoryMusic.png",
+            })
+             @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Технологии",
+                Link: "",
+                Img: "/public/images/categories/categoryTechnology.png",
+            })
+             @components.CategoryCard(components.CategoryCardProps{
+                Tag: "#Прочее",
+                Link: "",
+                Img: "/public/images/categories/categoryMore.png",
+            })
+        }
+        <div class="test"></div>
+    </main>
+    @layout.Footer()
+    }
+}
+
+templ MainStyle() {
+    <style>
+        .main-page{
+            width: 100%;
+            max-width: 1512px;
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
+            margin: auto;
+        }
+        .test{
+            height: 50vh;
+        }
+
+    </style>
+    
 }

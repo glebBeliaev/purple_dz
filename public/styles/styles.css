@@ -1,0 +1,29 @@
+:root {
+    --color-black: #3E3232;
+    --color-black-75: #3E3232BF;
+    --color-black-50: #3E323280;
+    --color-primary: #F81539;
+    --color-secondary: #FC4308;
+    --color-gray: #F5F5F5;
+    --color-white: #FFFFFF;
+
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin: 0;
+}

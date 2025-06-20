@@ -1,0 +1,40 @@
+package layout
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ TopTags() {
+    @TopTagsStyle()
+    <selection class="top-tags">
+        <div class="categories-nav">
+        { children... }
+        </div>
+        @components.ButtonIcon(){
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none">
+            <path d="M9.51562 17.9961C9.23438 17.9961 8.98438 17.9023 8.79688 17.7148C8.39062 17.3398 8.39062 16.6836 8.79688 16.3086L13.0781 11.9961L8.79688 7.71484C8.39062 7.33984 8.39062 6.68359 8.79688 6.30859C9.17188 5.90234 9.82812 5.90234 10.2031 6.30859L15.2031 11.3086C15.6094 11.6836 15.6094 12.3398 15.2031 12.7148L10.2031 17.7148C10.0156 17.9023 9.76562 17.9961 9.51562 17.9961Z"
+            fill="currentColor"/>
+            </svg>
+        }
+    </selection>
+}
+
+templ TopTagsStyle() {
+    <style>
+    .top-tags{
+        max-width: 1512px;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--color-gray);
+        padding: 10px;
+        border-radius: 12px;
+    }
+    .categories-nav{
+        display: flex;
+        height: 48px;
+        gap: 24px;
+    }
+    </style>
+    
+}

@@ -6,7 +6,6 @@ import (
 	"github.com/glebbeliaev/purple_dz/pkg"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/gofiber/template/html/v2"
 	slogfiber "github.com/samber/slog-fiber"
 )
 
@@ -14,13 +13,11 @@ func main() {
 	config.Init()
 	logger := pkg.NewLogger(config.NewLogConfig())
 
-	engine := html.New("./html", ".html")
-	app := fiber.New(fiber.Config{
-		Views: engine,
-	})
+	app := fiber.New()
 
 	app.Use(recover.New())
 	app.Use(slogfiber.New(logger))
+	app.Static("/public", "./public")
 	pages.NewHandler(app)
 
 	logger.Info("Server started")

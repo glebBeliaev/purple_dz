@@ -1,0 +1,49 @@
+package components
+
+type ButtonLinkProps struct {
+    URL string
+    Label string
+}
+
+templ ButtonLink(props ButtonLinkProps) {
+    @ButtonLinkStyle()
+    <a href={props.URL} class="button-selector">
+        <h5>{props.Label}</h5>
+    </a>
+}
+
+templ ButtonLinkStyle() {
+    <style>
+    .button-selector{
+        display: flex;
+        height: 24px;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .button-selector h5 {
+        margin: 0;
+        position: relative;
+        color: var(--color-black);
+        }
+
+    .button-selector h5::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 10px;
+        height: 4px;
+        background-color: var(--color-primary);
+        border-radius: 12px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .button-selector:hover h5::after {
+        opacity: 1;
+    }
+    </style>
+    
+}

@@ -1,0 +1,45 @@
+package layout
+
+templ Footer() {
+    @FooterStyle()
+    <footer class="footer">
+        <div class="footer-content">
+            <a class="terms">Правила обработки персональных данных</a>
+            <p class="copyright">Все права защищены 2025</p>
+        </div>
+    </footer>
+}
+
+templ FooterStyle() {
+    <style>
+        .footer{
+            max-width: 908px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            background-color: var(--color-gray);
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 45px;
+            color: var(--color-black-75);
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .footer-content{
+            max-width: 690px;
+            width: 100%;
+            margin-left: 205px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .copyright {
+            width: 178px;
+            text-align: center;
+        }
+        .terms {
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    
+}

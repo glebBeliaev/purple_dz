@@ -1,0 +1,70 @@
+package components
+
+type ButtonSelectorProps struct {
+    URL string
+    Label string
+}
+
+templ ButtonSelector(props ButtonSelectorProps) {
+    @ButtonSelectorStyle()
+    <a href={props.URL} class="button-selector">
+        <h5>{props.Label}</h5>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#3E323280"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <polyline points="6 9 12 15 18 9" />
+        </svg>
+    </a>
+}
+
+templ ButtonSelectorStyle() {
+    <style>
+    .button-selector{
+        display: flex;
+        height: 24px;
+        align-items: center;
+        gap: 2px;
+        color: var(--color-black);
+        position: relative;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .button-selector h5 {
+        margin: 0;
+        position: relative;
+        }
+
+    .button-selector h5::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 10px;
+        height: 4px;
+        background-color: var(--color-primary);
+        border-radius: 12px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .button-selector:hover h5::after {
+        opacity: 1;
+    }
+    .button-selector svg {
+        transition: transform 0.3s ease;
+    }
+
+    .button-selector:hover svg {
+        transform: rotate(180deg);
+     }
+    </style>
+    
+}

@@ -1,0 +1,67 @@
+package layout
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ Header() {
+    @HeaderStyle()
+    <section class="header">
+        <div class="left-header">
+        <span class="logo">Новости</span>
+        @components.ButtonSelector(components.ButtonSelectorProps{
+            URL: "/category",
+            Label: "Категории",
+        })
+        @components.ButtonLink(components.ButtonLinkProps{
+            URL: "/contacts",
+            Label: "Контакты",
+        })
+        </div>
+        <div class="right-header">
+        @components.SearchInput(components.SearchInputProps{
+            Placeholder: "Найти новость",
+            Icon: "/public/icons/search.svg", 
+            })
+        @components.ButtonLink(components.ButtonLinkProps{
+            URL: "/login",
+            Label: "Вход",
+        })
+        @components.ButtonLink(components.ButtonLinkProps{
+            URL: "/register",
+            Label: "Регистрация",
+        })
+        </div>
+    </section>
+}
+
+templ HeaderStyle() {
+    <style>
+    .header{
+        display: flex;
+        justify-content: space-between;
+        height: 48px;
+        max-width: 1512px;
+        width: 100%;
+        margin: auto;
+        margin-top: 45px;
+    }
+
+    .left-header{
+        display: flex;
+        gap: 68px;
+        align-items: center;
+    }
+
+    .right-header{
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .logo{
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--color-secondary);
+    }
+    
+    </style>
+}
