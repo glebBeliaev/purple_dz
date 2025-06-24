@@ -1,0 +1,44 @@
+package layout
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ Banners() {
+    @BannersStyle()
+    <section class="banners">
+        <div class="left-banners">
+            { children... }
+        </div>
+        <div class="slider">
+            @Slider(){
+                @components.CardBanner(components.BannerCardProps{
+                    Headline: "Несколько мониторов - Зло!",
+                    Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
+                    ImgLink: "/public/images/banners/banner_display.png",
+                })
+            }
+        </div>
+    </section>
+}
+
+templ BannersStyle() {
+    <style>
+    .banners{
+        display: flex;
+        gap: 24px;
+        max-width: 1512px;
+        width: 100%;
+    }
+
+    .left-banners{
+        display: flex;
+        gap: 24px;
+        flex: 1;
+    }
+    .slider{
+        display: flex;
+        flex: 1;
+
+    }
+    </style>
+    
+}

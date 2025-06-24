@@ -6,6 +6,8 @@
     --color-secondary: #FC4308;
     --color-gray: #F5F5F5;
     --color-white: #FFFFFF;
+    --color-white-75: rgba(255, 255, 255, 0.75);
+    --color-white-50: #FFFFFF80;
 
 }
 
@@ -19,6 +21,20 @@ body {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin: 0;
 }
 
 h5 {

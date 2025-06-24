@@ -1,0 +1,44 @@
+package layout
+
+templ CarouselPosts() {
+    @CarouselPostsStyle()
+    <section class="carousel-post">
+        <div class="carousel-post-headline">
+            <span class="marker"></span>
+            <h4>Заголовок</h4>
+        </div>
+        <div class="carousel-post-list">
+            { children...}
+        </div>
+    </section>
+}
+
+templ CarouselPostsStyle() {
+    <style>
+        .carousel-post{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .carousel-post-list{
+            display: flex;
+            gap: 24px;
+        }
+        .carousel-post-headline {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* расстояние между маркером и текстом */
+        }
+        .marker {
+            width: 4px;
+            height: 10px;
+            background-color: var(--color-primary);
+            border-radius: 12px;
+        }
+
+        .carousel-post-headline h4{
+            color: var(--color-black);
+        }
+        
+    </style>
+}

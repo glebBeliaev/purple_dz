@@ -6,15 +6,15 @@ type CategoryCardProps struct{
     Img string
 }
 
-templ CategoryCard(props CategoryCardProps) {
-    @CategoryCardStyle()
+templ CardCategory(props CategoryCardProps) {
+    @CardCategoryStyle()
     <a href={props.Link} class="category-card" style={"background-image: url(" + props.Img + ");"}>
         <div class="category-overlay"></div>
         <h5>{props.Tag}</h5>
     </a>
 }
 
-templ CategoryCardStyle() {
+templ CardCategoryStyle() {
     <style>
     .category-card {
         position: relative;

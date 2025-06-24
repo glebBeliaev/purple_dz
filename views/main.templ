@@ -13,42 +13,102 @@ templ Main() {
     <main class="main-page">
         @layout.Header()
         @layout.TopTags(){
-            @components.CategoryCard(components.CategoryCardProps{
+            @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Еда",
                 Link: "",
                 Img: "/public/images/categories/categoryFood.png",
             })
-             @components.CategoryCard(components.CategoryCardProps{
+             @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Животные",
                 Link: "",
                 Img: "/public/images/categories/categoryAnimal.png",
             })
-             @components.CategoryCard(components.CategoryCardProps{
+             @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Машины",
                 Link: "",
                 Img: "/public/images/categories/categoryCars.png",
             })
-             @components.CategoryCard(components.CategoryCardProps{
+             @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Спорт",
                 Link: "",
                 Img: "/public/images/categories/categorySport.png",
             })
-             @components.CategoryCard(components.CategoryCardProps{
+             @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Музыка",
                 Link: "",
                 Img: "/public/images/categories/categoryMusic.png",
             })
-             @components.CategoryCard(components.CategoryCardProps{
+             @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Технологии",
                 Link: "",
                 Img: "/public/images/categories/categoryTechnology.png",
             })
-             @components.CategoryCard(components.CategoryCardProps{
+             @components.CardCategory(components.CategoryCardProps{
                 Tag: "#Прочее",
                 Link: "",
                 Img: "/public/images/categories/categoryMore.png",
             })
         }
+        @layout.Banners(){
+            @components.CardBanner(components.BannerCardProps{
+                Headline: "Как безопасно водить",
+                Description: "Длинный текст про то, как можно безопасно водить автомобиль.",
+                ImgLink: "/public/images/banners/banner_car.png",
+            })
+            @components.CardBanner(components.BannerCardProps{
+                Headline: "Как безопасно водить",
+                Description: "Сегодня мы рассмотрим технику быстрого создания музыки за счёт использования особой техники",
+                ImgLink: "/public/images/banners/banner_music.png",
+            })
+        }
+
+        @layout.CarouselPosts(){
+            @components.CardPost(components.CardPostProps{
+                Cover: "/public/images/posts/post1.png",
+                Title: "Открытие сезона байдарок",
+                Description: "Сегодня был открыт сезон путешествия на байдарках, где вы можете поучаствовать в увлекательном приключении",
+            }){
+                    @components.CardAuthor(components.CardAuthorProps{
+                        AvatarURL: "/public/images/avatars/ava_mihail.png",
+                        Name: "Михаил Аршинов",
+                        Date: "Август 18, 2025",
+                    })
+                }
+            @components.CardPost(components.CardPostProps{
+                Cover: "/public/images/posts/post2.png",
+                Title: "Выбери правильный ноутбук для задач",
+                Description: "От верного выбора ноутбука зависит не только удобство, но и эффективность работы в офисе и дома",
+            }){
+                    @components.CardAuthor(components.CardAuthorProps{
+                        AvatarURL: "/public/images/avatars/vasya.png",
+                        Name: "Вася Программист",
+                        Date: "Июль 25, 2025",
+                    })
+                }
+            @components.CardPost(components.CardPostProps{
+                Cover: "/public/images/posts/post3.png",
+                Title: "Создание автомобилей с автопилотом",
+                Description: "Электические автомобили без водителя скоро станут реальностью, где нам не придётся уметь водить",
+            }){
+                    @components.CardAuthor(components.CardAuthorProps{
+                        AvatarURL: "/public/images/avatars/maria.png",
+                        Name: "Мария",
+                        Date: "Июль 14, 2025",
+                    })
+                }
+            @components.CardPost(components.CardPostProps{
+                Cover: "/public/images/posts/post4.png",
+                Title: "Как быстро приготовить вкусный обед",
+                Description: "Сегодня поговорим о том, как можно быстро и эффективно приготовить обед для большой семьи",
+            }){
+                    @components.CardAuthor(components.CardAuthorProps{
+                        AvatarURL: "/public/images/avatars/li.png",
+                        Name: "Ли Сюн",
+                        Date: "Май 10, 2025",
+                    })
+                }
+        }
+        
         <div class="test"></div>
     </main>
     @layout.Footer()

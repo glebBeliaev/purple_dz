@@ -1,0 +1,75 @@
+package components
+
+type CardAuthorProps struct {
+	AvatarURL    string
+	Name         string
+	Date         string
+}
+
+templ CardAuthor(props CardAuthorProps) {
+    @CardAuthorStyle()
+
+    <div class="author-card">
+        <img class="avatar" src={props.AvatarURL}/>
+        <div class="author-info">
+            <div class="name-author-card">{props.Name}</div>
+            if props.Date!=""{
+                <div class="date">{props.Date}</div>
+            }
+        </div>
+        if props.Date!="" {
+           @ButtonIcon(){
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none">
+            <path d="M16 0C17.0833 0 18 0.859024 18 1.87423V18.7423C18 19.7185 16.875 20.3042 15.9583 19.8356L10 16.5557L4 19.8356C3.08333 20.3042 2 19.7185 2 18.7423V1.87423C2 0.859024 2.875 0 4 0H16ZM16 17.649V2.10851C16 1.99137 15.875 1.87423 15.7083 1.87423H4.20833C4.08333 1.87423 4 1.99137 4 2.10851V17.649L10 14.3691L16 17.649Z"
+            fill="currentColor"/>
+            </svg>
+        }
+        }
+    </div>
+}
+
+
+templ CardAuthorStyle() {
+     <style>
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            background-color: var(--color-gray);
+            border-radius: 12px;
+        }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            height: 100%;
+            width: 100%;
+        }
+        .name-author-card {
+            color: var(--color-black);
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.1px;
+            line-height: 22px;
+            width: 100%;
+        }
+        .date {
+            color: var(--color-black-75);
+            margin: 0;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.25px;
+            line-height: 18px;
+            width: 100%;
+        }
+    </style>
+}
