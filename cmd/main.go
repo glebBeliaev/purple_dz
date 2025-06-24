@@ -15,7 +15,9 @@ func main() {
 	logConfig := config.NewLogConfig()
 	customLogger := logger.NewLogger(logConfig)
 
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		Prefork: false,
+	})
 
 	app.Use(fiberzerolog.New(fiberzerolog.Config{
 		Logger: customLogger,

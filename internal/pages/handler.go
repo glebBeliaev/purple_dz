@@ -1,6 +1,8 @@
 package pages
 
 import (
+	"fmt"
+
 	"github.com/glebbeliaev/purple_dz/pkg/tadaptor"
 	"github.com/glebbeliaev/purple_dz/views"
 	"github.com/gofiber/fiber/v2"
@@ -18,6 +20,7 @@ type User struct {
 }
 
 func NewHandler(router fiber.Router) {
+	fmt.Println(">>> routes registered")
 	h := &HomeHandler{
 		router: router,
 	}
@@ -27,6 +30,7 @@ func NewHandler(router fiber.Router) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
+	fmt.Println(">>> home called")
 	component := views.Main()
 	return tadaptor.Render(c, component)
 }
