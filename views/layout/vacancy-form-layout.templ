@@ -1,0 +1,24 @@
+package layout
+
+import "github.com/glebbeliaev/purple_dz/views/widgets"
+
+templ VacancyFormLayout() {
+    @VacancyFormLayoutStyle()
+    <section class="vacancy-form-layout">
+        @widgets.VacancyForm()
+    </section>   
+}
+
+templ VacancyFormLayoutStyle() {
+    <style>
+        .vacancy-form-layout{
+            background-color: var(--color-primary-10);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0 120px 0;
+        }
+    </style>
+    
+}

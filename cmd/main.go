@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/glebbeliaev/purple_dz/config"
 	"github.com/glebbeliaev/purple_dz/internal/pages"
+	"github.com/glebbeliaev/purple_dz/internal/vacancy"
 	"github.com/glebbeliaev/purple_dz/pkg/logger"
 	"github.com/gofiber/contrib/fiberzerolog"
 	"github.com/gofiber/fiber/v2"
@@ -26,6 +27,7 @@ func main() {
 	app.Static("/public", "./public")
 
 	pages.NewHandler(app)
+	vacancy.NewHandler(app, customLogger)
 
 	app.Listen(":3000")
 }

@@ -1,0 +1,81 @@
+package widgets
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ VacancyForm() {
+    @VacancyFormStyle()
+    <div class="vacancy-form">
+        <div class="vacancy-form-headline">
+            @components.Title2("Опубликовать вакансию")
+            <p>Введите все необходимые данные для публикации</p>
+        </div>
+        <form class="vacancy-form-form">
+            <div class="vacancy-form-inputs">
+                @components.Input(components.InputProps{
+                    Placeholder: "Должность",
+                    Name: "role",
+                })
+                @components.Input(components.InputProps{
+                    Placeholder: "Название компании",
+                    Name: "name",
+                })
+                @components.Input(components.InputProps{
+                    Placeholder: "Сфера компании",
+                    Name: "type",
+                })
+                @components.Input(components.InputProps{
+                    Placeholder: "Заработная плата",
+                    Name: "salary",
+                })
+                @components.Input(components.InputProps{
+                    Placeholder: "Расположение",
+                    Name: "location",
+                })
+                @components.Input(components.InputProps{
+                    Placeholder: "Контактный email",
+                    Name: "email",
+                })
+            </div>
+            @components.ButtonSubmit(){
+            <span>Опубликовать вакансию</span>
+            }  
+        </form>
+    </div>
+}
+
+templ VacancyFormStyle() {
+    <style>
+        .vacancy-form{
+            display: flex;
+            flex-direction: column;
+            max-width: 894px;
+            width: 100%;
+            justify-content: center;
+        }
+        .vacancy-form-form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+        }
+        .vacancy-form-inputs{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 24px;
+            margin-bottom: 30px;
+        }
+        .vacancy-form-headline{
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .vacancy-form-headline p{
+            text-align: center;
+            color: var(--color-black);
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+        }
+    </style> 
+}
