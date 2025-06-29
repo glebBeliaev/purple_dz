@@ -1,0 +1,28 @@
+package components
+
+templ TitleSection(title string) {
+    @TitleSectionStyle()
+    <div class="title-section">
+        <span class="title-section__marker"></span>
+        <h4>{title}</h4>
+    </div>    
+}
+
+templ TitleSectionStyle() {
+    <style>     
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .title-section__marker {
+            width: 4px;
+            height: 10px;
+            background-color: var(--color-primary);
+            border-radius: 12px;
+        }
+        .title-section h4{
+            color: var(--color-black);
+        } 
+    </style>
+}

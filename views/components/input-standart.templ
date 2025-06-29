@@ -3,27 +3,36 @@ package components
 type SearchInputProps struct {
     Placeholder string
     Icon string
+    Title string
 }
 
-templ SearchInput(props SearchInputProps) {
-    @SearchInputStyle()
-    <div class="search-wrapper">
-        <input type="text" placeholder={props.Placeholder} />
-        <button type="submit" class="search-button">
-            <img src={props.Icon} alt="Поиск" />
-        </button>
-    </div>
+templ InputStandart(props SearchInputProps) {
+    @InputStandartStyle()
+    <div class="input-standart">
+        if props.Title != ""{
+            <h5>{props.Title}</h5>
+        }
+        <div class="input-standart-wrapper">
+            <input type="text" placeholder={props.Placeholder} />
+            if props.Icon !=""{
+                <button type="submit" class="search-button">
+                    <img src={props.Icon} alt="Поиск" />
+                </button>
+            }
+        </div>
+        <span class="input-standart-description"></span>
+    </div> 
 }
 
-templ SearchInputStyle() {
+templ InputStandartStyle() {
 <style>
-    .search-wrapper {
+    .input-standart-wrapper {
         position: relative;
         width: 100%;
         max-width: 500px;
     }
 
-    .search-wrapper input {
+    .input-standart-wrapper input {
         width: 360px;
         height: 48px;
         padding: 12px 44px 12px 16px;
@@ -55,7 +64,7 @@ templ SearchInputStyle() {
         height: 20px;
     }
 
-    .search-wrapper input:not(:placeholder-shown) {
+    .input-standart-wrapper input:not(:placeholder-shown) {
         font-size: 16px;
         color: var(--color-black);
     }

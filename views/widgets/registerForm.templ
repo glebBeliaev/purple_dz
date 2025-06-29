@@ -1,0 +1,16 @@
+package widgets
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ RegisterForm() {
+    <div>
+    @components.TitleSection("")
+    <form>
+        <div class="form__inputs">
+            {children...}
+        </div>
+        
+    </form>
+    </div>
+    
+}

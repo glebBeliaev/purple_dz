@@ -1,12 +1,11 @@
 package layout
 
-templ CarouselPosts() {
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ CarouselPosts(titleSection string) {
     @CarouselPostsStyle()
     <section class="carousel-post">
-        <div class="carousel-post-headline">
-            <span class="marker"></span>
-            <h4>Заголовок</h4>
-        </div>
+        @components.TitleSection(titleSection)
         <div class="carousel-post-list">
             { children...}
         </div>

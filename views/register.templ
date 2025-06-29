@@ -1,0 +1,36 @@
+package views
+  
+import "github.com/glebbeliaev/purple_dz/views/layout"
+
+  
+templ Register() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "Новости - всё самое главное",
+        MetaDescription: "Сайт новостей",
+    }){
+    @RegisterStyle()
+    <main class="main-page">
+        @layout.Header()
+        <div class="test"></div>
+    </main>
+    @layout.Footer()
+    }
+}
+
+templ RegisterStyle() {
+    <style>
+        .main-page{
+            width: 100%;
+            max-width: 1512px;
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
+            margin: auto;
+        }
+        .test{
+            height: 50vh;
+        }
+
+    </style>
+    
+}
