@@ -57,8 +57,9 @@ func Header() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.InputStandart(components.SearchInputProps{
+		templ_7745c5c3_Err = components.InputStandart(components.InputStandartProps{
 			Placeholder: "Найти новость",
+			TypeInput:   "text",
 			Icon:        "/public/icons/search.svg",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -107,7 +108,7 @@ func HeaderStyle() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n    .header{\n        display: flex;\n        justify-content: space-between;\n        height: 48px;\n        max-width: 1512px;\n        width: 100%;\n        margin: auto;\n        margin-top: 45px;\n    }\n\n    .left-header{\n        display: flex;\n        gap: 68px;\n        align-items: center;\n    }\n\n    .right-header{\n        display: flex;\n        gap: 24px;\n        align-items: center;\n    }\n\n    .logo{\n        font-size: 22px;\n        font-weight: 700;\n        color: var(--color-secondary);\n        text-decoration: none;\n    }\n    \n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n    .header{\n        display: flex;\n        justify-content: space-between;\n        height: 48px;\n        max-width: 1512px;\n        width: 100%;\n        margin: auto;\n        margin-top: 45px;\n    }\n\n    .left-header{\n        display: flex;\n        gap: 68px;\n        align-items: center;\n    }\n\n    .right-header{\n        display: flex;\n        gap: 24px;\n        align-items: center;\n    }\n    .right-header .input-standart-wrapper{\n        width: 360px;\n    }\n\n    .logo{\n        font-size: 22px;\n        font-weight: 700;\n        color: var(--color-secondary);\n        text-decoration: none;\n    }\n    \n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

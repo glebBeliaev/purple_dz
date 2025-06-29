@@ -1,6 +1,8 @@
 package views
   
 import "github.com/glebbeliaev/purple_dz/views/layout"
+import "github.com/glebbeliaev/purple_dz/views/widgets"
+import "github.com/glebbeliaev/purple_dz/views/components"
 
   
 templ Register() {
@@ -9,9 +11,31 @@ templ Register() {
         MetaDescription: "Сайт новостей",
     }){
     @RegisterStyle()
-    <main class="main-page">
+    @FormSectionStyle()
+    <main class="register-page">
         @layout.Header()
-        <div class="test"></div>
+        <section class="form-section">
+            @widgets.RegisterForm("Регистрация на сайте"){
+                @components.InputStandart(components.InputStandartProps{
+                Title: "Имя",
+                TypeInput: "text",
+                Placeholder: "",
+                Icon: "", 
+                })
+                @components.InputStandart(components.InputStandartProps{
+                Title: "Email",
+                TypeInput: "email",
+                Placeholder: "",
+                Icon: "", 
+                })
+                @components.InputStandart(components.InputStandartProps{
+                Title: "Пароль",
+                TypeInput: "password",
+                Placeholder: "",
+                Icon: "", 
+                })
+            }
+        </section>
     </main>
     @layout.Footer()
     }
@@ -19,18 +43,28 @@ templ Register() {
 
 templ RegisterStyle() {
     <style>
-        .main-page{
-            width: 100%;
-            max-width: 1512px;
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .register-page{
             display: flex;
             flex-direction: column;
-            gap: 45px;
+            height: 100%;
+            width: 100%;
+            max-width: 1512px;
             margin: auto;
         }
-        .test{
-            height: 50vh;
-        }
-
     </style>
-    
+}
+
+templ FormSectionStyle() {
+    <style>
+        .form-section {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+    </style>
 }

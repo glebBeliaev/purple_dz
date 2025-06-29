@@ -75,7 +75,7 @@ func TitleSectionStyle() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<style>     \n        .title-section {\n            display: flex;\n            align-items: center;\n            gap: 8px;\n        }\n        .title-section__marker {\n            width: 4px;\n            height: 10px;\n            background-color: var(--color-primary);\n            border-radius: 12px;\n        }\n        .title-section h4{\n            color: var(--color-black);\n        } \n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<style>     \n        .title-section {\n            display: flex;\n            align-items: center;\n            gap: 8px;\n        }\n        .title-section__marker {\n            width: 4px;\n            height: 10px;\n            background-color: var(--color-primary);\n            border-radius: 12px;\n        }\n        .title-section h4{\n            color: var(--color-black);\n            width: auto;\n        } \n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

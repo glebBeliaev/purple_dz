@@ -17,8 +17,9 @@ templ Header() {
         })
         </div>
         <div class="right-header">
-        @components.InputStandart(components.SearchInputProps{
+        @components.InputStandart(components.InputStandartProps{
             Placeholder: "Найти новость",
+            TypeInput: "text",
             Icon: "/public/icons/search.svg", 
             })
         @components.ButtonLink(components.ButtonLinkProps{
@@ -55,6 +56,9 @@ templ HeaderStyle() {
         display: flex;
         gap: 24px;
         align-items: center;
+    }
+    .right-header .input-standart-wrapper{
+        width: 360px;
     }
 
     .logo{

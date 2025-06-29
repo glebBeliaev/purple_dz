@@ -2,15 +2,42 @@ package widgets
 
 import "github.com/glebbeliaev/purple_dz/views/components"
 
-templ RegisterForm() {
-    <div>
-    @components.TitleSection("")
+templ RegisterForm(headline string) {
+    @RegisterFormStyle()
+    <div class="register-form">
+    @components.TitleSection(headline)
     <form>
-        <div class="form__inputs">
+        <div class="register-form__form__inputs">
             {children...}
         </div>
-        
+        @components.ButtonPrimary(){
+            Зарегистрироваться
+        }
     </form>
-    </div>
+    </div> 
+}
+
+templ RegisterFormStyle() {
+    <style>
+        .register-form{
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+            max-width: 488px;
+        }
+        .register-form form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        .register-form__form__inputs{
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
     
+    </style>
 }

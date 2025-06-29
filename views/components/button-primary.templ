@@ -1,6 +1,29 @@
 package components
 
 templ ButtonPrimary() {
-    <div></div>
-    
+    @ButtonPrimaryStyle()
+    <button class="button-primary">{children...}</button>   
+}
+
+templ ButtonPrimaryStyle() {
+    <style>
+        .button-primary{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 10px 16px;
+            background-color: var(--color-primary-75);
+            border-radius: 12px;
+            color: var(--color-white);
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .button-primary:hover{
+            background-color: var(--color-primary);
+            transition: background-color 0.3s ease;
+        }
+    </style>
 }
