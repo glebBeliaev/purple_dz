@@ -9,7 +9,8 @@ templ VacancyForm() {
             @components.Title2("Опубликовать вакансию")
             <p>Введите все необходимые данные для публикации</p>
         </div>
-        <form class="vacancy-form-form">
+        <div id="vacancy-result"></div>
+        <form class="vacancy-form-form" hx-post="/vacancy" hx-trigger="submit" hx-target="#vacancy-result" hx-swap="innerHTML swap:0.5s">
             <div class="vacancy-form-inputs">
                 @components.Input(components.InputProps{
                     Placeholder: "Должность",
@@ -37,7 +38,8 @@ templ VacancyForm() {
                 })
             </div>
             @components.ButtonSubmit(){
-            <span>Опубликовать вакансию</span>
+            <div class="vacancy-form__submit">Опубликовать вакансию</div>
+            <div class="vacancy-form__loader"></div>
             }  
         </form>
     </div>
@@ -76,6 +78,31 @@ templ VacancyFormStyle() {
             font-size: 16px;
             font-weight: 400;
             margin: 0;
+        }
+        .htmx-request .vacancy-form__submit {
+            display: none;
+        }
+        .vacancy-form__loader{
+            display: none;
+        }
+        .htmx-request .vacancy-form__loader {
+            display: block;
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style> 
 }

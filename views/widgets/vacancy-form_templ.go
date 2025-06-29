@@ -43,7 +43,7 @@ func VacancyForm() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>Введите все необходимые данные для публикации</p></div><form class=\"vacancy-form-form\"><div class=\"vacancy-form-inputs\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>Введите все необходимые данные для публикации</p></div><div id=\"vacancy-result\"></div><form class=\"vacancy-form-form\" hx-post=\"/vacancy\" hx-trigger=\"submit\" hx-target=\"#vacancy-result\" hx-swap=\"innerHTML swap:0.5s\"><div class=\"vacancy-form-inputs\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -105,7 +105,7 @@ func VacancyForm() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<span>Опубликовать вакансию</span>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"vacancy-form__submit\">Опубликовать вакансию</div><div class=\"vacancy-form__loader\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -144,7 +144,7 @@ func VacancyFormStyle() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n        .vacancy-form{\n            display: flex;\n            flex-direction: column;\n            max-width: 894px;\n            width: 100%;\n            justify-content: center;\n        }\n        .vacancy-form-form{\n            display: flex;\n            flex-direction: column;\n            width: 100%;\n            justify-content: center;\n        }\n        .vacancy-form-inputs{\n            display: grid;\n            grid-template-columns: 1fr 1fr;\n            gap: 30px 24px;\n            margin-bottom: 30px;\n        }\n        .vacancy-form-headline{\n            display: flex;\n            flex-direction: column;\n            gap: 40px;\n            margin-bottom: 60px;\n        }\n        .vacancy-form-headline p{\n            text-align: center;\n            color: var(--color-black);\n            font-size: 16px;\n            font-weight: 400;\n            margin: 0;\n        }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n        .vacancy-form{\n            display: flex;\n            flex-direction: column;\n            max-width: 894px;\n            width: 100%;\n            justify-content: center;\n        }\n        .vacancy-form-form{\n            display: flex;\n            flex-direction: column;\n            width: 100%;\n            justify-content: center;\n        }\n        .vacancy-form-inputs{\n            display: grid;\n            grid-template-columns: 1fr 1fr;\n            gap: 30px 24px;\n            margin-bottom: 30px;\n        }\n        .vacancy-form-headline{\n            display: flex;\n            flex-direction: column;\n            gap: 40px;\n            margin-bottom: 60px;\n        }\n        .vacancy-form-headline p{\n            text-align: center;\n            color: var(--color-black);\n            font-size: 16px;\n            font-weight: 400;\n            margin: 0;\n        }\n        .htmx-request .vacancy-form__submit {\n            display: none;\n        }\n        .vacancy-form__loader{\n            display: none;\n        }\n        .htmx-request .vacancy-form__loader {\n            display: block;\n            width: 48px;\n            height: 48px;\n            border: 5px solid #FFF;\n            border-bottom-color: transparent;\n            border-radius: 50%;\n            display: inline-block;\n            box-sizing: border-box;\n            animation: rotation 1s linear infinite;\n        }\n        @keyframes rotation {\n            0% {\n                transform: rotate(0deg);\n            }\n            100% {\n                transform: rotate(360deg);\n            }\n        }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
