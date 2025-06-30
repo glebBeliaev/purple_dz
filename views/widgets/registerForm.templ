@@ -6,7 +6,7 @@ templ RegisterForm(headline string) {
     @RegisterFormStyle()
     <div class="register-form">
     @components.TitleSection(headline)
-    <form>
+    <form hx-post="/api/signUp" hx-trigger="submit" hx-target="#singUp-result" hx-swap="innerHTML">
         <div class="register-form__form__inputs">
             {children...}
         </div>
