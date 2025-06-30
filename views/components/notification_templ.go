@@ -69,7 +69,7 @@ func Notification(message string, status NotificationStatus) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/notification.templ`, Line: 15, Col: 11}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/notification.templ`, Line: 15, Col: 12}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -104,7 +104,7 @@ func NotificationStyle() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n\t\t.notification{\n\t\t\twidth: 100%;\n\t\t\tpadding: 30px;\n\t\t\tborder-radius: 10px;\n\t\t\tcolor: var(--color-white)\n\t\t\tfont-size: 16px;\n\t\t\tmargin-top: 30px;\n\t\t}\n\t\t.notification-success{\n\t\t\tbackground-color: #31b4a3;\n        }\n\t\t.notification-fail{\n\t\t\tbackground-color: #c53016;\n\t\t}\n\t</style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n\t\t.notification{\n\t\t\twhite-space: pre-line;\n\t\t\tpadding: 24px;\n\t\t\tborder-radius: 12px;\n\t\t\tfont-size: 16px;\n\t\t\tmargin-top: 30px;\n\t\t}\n\t\t.notification-success{\n\t\t\tbackground-color: var(--color-gray);\n\t\t\tcolor: var(--color-black);\n\t\t\tfont-weight: 500;\n\n        }\n\t\t.notification-fail{\n\t\t\tbackground-color: var(--color-primary-50);\n\t\t\tcolor: var(--color-primary);\n\t\t}\n\t</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

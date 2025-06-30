@@ -31,13 +31,13 @@ func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
 	}
 	errors := validate.Validate(
 		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Email не задан или неверный"},
-		&validators.StringIsPresent{Name: "Name", Field: form.Name, Message: "Название компании не задано"},
-		&validators.StringIsPresent{Name: "Type", Field: form.Password, Message: "Сфера компании не задана"})
+		&validators.StringIsPresent{Name: "Name", Field: form.Name, Message: "Имя не задано"},
+		&validators.StringIsPresent{Name: "Password", Field: form.Password, Message: "Пароль не задан"})
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
 		return tadapter.Render(c, component)
 	}
-	component = components.Notification("Vacancy created!", components.NotificationSuccess)
+	component = components.Notification("✅ Регистрация прошла успешно!", components.NotificationSuccess)
 	return tadapter.Render(c, component)
 }

@@ -8,28 +8,32 @@ NotificationFail NotificationStatus = "fail"
   
 templ Notification(message string, status NotificationStatus) {
 	@NotificationStyle()
-	<div class={
-	"notification",
-	templ.KV("notification-success", status == NotificationSuccess),
-	templ.KV("notification-fail", status == NotificationFail),
-	}>{message}</div>
+		<div class={
+		"notification",
+		templ.KV("notification-success", status == NotificationSuccess),
+		templ.KV("notification-fail", status == NotificationFail),
+		}>{message}
+		</div>
 }
   
 templ NotificationStyle() {
 	<style>
 		.notification{
-			width: 100%;
-			padding: 30px;
-			border-radius: 10px;
-			color: var(--color-white)
+			white-space: pre-line;
+			padding: 24px;
+			border-radius: 12px;
 			font-size: 16px;
 			margin-top: 30px;
 		}
 		.notification-success{
-			background-color: #31b4a3;
+			background-color: var(--color-gray);
+			color: var(--color-black);
+			font-weight: 500;
+
         }
 		.notification-fail{
-			background-color: #c53016;
+			background-color: var(--color-primary-50);
+			color: var(--color-primary);
 		}
 	</style>
 }

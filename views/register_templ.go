@@ -196,7 +196,7 @@ func FormSectionStyle() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<style>\n        .form-section {\n        display: flex;\n        flex-direction: column;\n        flex-grow: 1;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<style>\n        .form-section {\n        display: flex;\n        width: 100%;\n        flex-direction: column;\n        flex-grow: 1;\n        align-items: center;\n        justify-content: center;\n        }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
