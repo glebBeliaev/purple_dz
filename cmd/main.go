@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/glebbeliaev/purple_dz/config"
-	"github.com/glebbeliaev/purple_dz/internal/pages"
+	pages "github.com/glebbeliaev/purple_dz/internal/pages/home"
+	"github.com/glebbeliaev/purple_dz/internal/pages/register"
+	"github.com/glebbeliaev/purple_dz/internal/registration"
 	"github.com/glebbeliaev/purple_dz/pkg"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -19,6 +21,8 @@ func main() {
 	app.Use(slogfiber.New(logger))
 	app.Static("/public", "./public")
 	pages.NewHandler(app)
+	register.NewHandler(app)
+	registration.NewHandler(app)
 
 	logger.Info("Server started")
 	app.Listen(":3000")

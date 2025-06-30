@@ -6,7 +6,7 @@ templ Header() {
     @HeaderStyle()
     <section class="header">
         <div class="left-header">
-        <span class="logo">Новости</span>
+        <a class="logo" href="/">Новости</a>
         @components.ButtonSelector(components.ButtonSelectorProps{
             URL: "/category",
             Label: "Категории",
@@ -17,8 +17,9 @@ templ Header() {
         })
         </div>
         <div class="right-header">
-        @components.SearchInput(components.SearchInputProps{
+        @components.InputStandart(components.InputStandartProps{
             Placeholder: "Найти новость",
+            TypeInput: "text",
             Icon: "/public/icons/search.svg", 
             })
         @components.ButtonLink(components.ButtonLinkProps{
@@ -56,11 +57,15 @@ templ HeaderStyle() {
         gap: 24px;
         align-items: center;
     }
+    .right-header .input-standart-wrapper{
+        width: 360px;
+    }
 
     .logo{
         font-size: 22px;
         font-weight: 700;
         color: var(--color-secondary);
+        text-decoration: none;
     }
     
     </style>
