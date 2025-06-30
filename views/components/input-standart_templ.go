@@ -10,6 +10,7 @@ import templruntime "github.com/a-h/templ/runtime"
 
 type InputStandartProps struct {
 	Title       string
+	Name        string
 	TypeInput   string
 	Placeholder string
 	Icon        string
@@ -52,7 +53,7 @@ func InputStandart(props InputStandartProps) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(props.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 15, Col: 28}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 16, Col: 28}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -70,7 +71,7 @@ func InputStandart(props InputStandartProps) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(props.TypeInput)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 18, Col: 40}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 40}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -83,36 +84,49 @@ func InputStandart(props InputStandartProps) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(props.Placeholder)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 18, Col: 72}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 72}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" name=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(props.Name)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 90}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if props.Icon != "" {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<button type=\"submit\" class=\"search-button\"><img src=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<button type=\"submit\" class=\"search-button\"><img src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(props.Icon)
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(props.Icon)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 21, Col: 40}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 22, Col: 40}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" alt=\"Поиск\"></button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" alt=\"Поиск\"></button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div><span class=\"input-standart-description\"></span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><span class=\"input-standart-description\"></span></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -136,12 +150,12 @@ func InputStandartStyle() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var6 == nil {
-			templ_7745c5c3_Var6 = templ.NopComponent
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<style>\n    .input-standart{\n        display: flex;\n        flex-direction: column;\n        gap: 8px;\n    }\n    .input-standart-wrapper {\n        position: relative;\n        width: 100%;\n    }\n\n    .input-standart-wrapper input {\n        width: 100%;\n        height: 48px;\n        padding: 12px 16px 12px 16px;\n        border: none;\n        border-radius: 12px;\n        background-color: var(--color-gray);\n        font-size: 12px;\n        font-weight: 400;\n        color: var(--color-black-75);\n        outline: none;\n    }\n\n    .search-button {\n        position: absolute;\n        right: 12px;\n        top: 50%;\n        transform: translateY(-50%);\n        background: none;\n        border: none;\n        padding: 0;\n        cursor: pointer;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .search-button img {\n        width: 20px;\n        height: 20px;\n    }\n\n    .input-standart-wrapper input:not(:placeholder-shown) {\n        font-size: 16px;\n        color: var(--color-black);\n    }\n</style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<style>\n    .input-standart{\n        display: flex;\n        flex-direction: column;\n        gap: 8px;\n    }\n    .input-standart-wrapper {\n        position: relative;\n        width: 100%;\n    }\n\n    .input-standart-wrapper input {\n        width: 100%;\n        height: 48px;\n        padding: 12px 16px 12px 16px;\n        border: none;\n        border-radius: 12px;\n        background-color: var(--color-gray);\n        font-size: 12px;\n        font-weight: 400;\n        color: var(--color-black-75);\n        outline: none;\n    }\n\n    .search-button {\n        position: absolute;\n        right: 12px;\n        top: 50%;\n        transform: translateY(-50%);\n        background: none;\n        border: none;\n        padding: 0;\n        cursor: pointer;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .search-button img {\n        width: 20px;\n        height: 20px;\n    }\n\n    .input-standart-wrapper input:not(:placeholder-shown) {\n        font-size: 16px;\n        color: var(--color-black);\n    }\n</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -83,6 +83,7 @@ func Register() templ.Component {
 				ctx = templ.InitializeContext(ctx)
 				templ_7745c5c3_Err = components.InputStandart(components.InputStandartProps{
 					Title:       "Имя",
+					Name:        "name",
 					TypeInput:   "text",
 					Placeholder: "",
 					Icon:        "",
@@ -96,6 +97,7 @@ func Register() templ.Component {
 				}
 				templ_7745c5c3_Err = components.InputStandart(components.InputStandartProps{
 					Title:       "Email",
+					Name:        "email",
 					TypeInput:   "email",
 					Placeholder: "",
 					Icon:        "",
@@ -109,6 +111,7 @@ func Register() templ.Component {
 				}
 				templ_7745c5c3_Err = components.InputStandart(components.InputStandartProps{
 					Title:       "Пароль",
+					Name:        "password",
 					TypeInput:   "password",
 					Placeholder: "",
 					Icon:        "",

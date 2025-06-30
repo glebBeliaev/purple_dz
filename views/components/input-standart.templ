@@ -2,6 +2,7 @@ package components
 
 type InputStandartProps struct {
     Title string
+    Name string
     TypeInput string
     Placeholder string
     Icon string
@@ -15,7 +16,7 @@ templ InputStandart(props InputStandartProps) {
             <h5>{props.Title}</h5>
         }
         <div class="input-standart-wrapper">
-            <input type={props.TypeInput} placeholder={props.Placeholder} />
+            <input type={props.TypeInput} placeholder={props.Placeholder} name={props.Name}/>
             if props.Icon !=""{
                 <button type="submit" class="search-button">
                     <img src={props.Icon} alt="Поиск" />
