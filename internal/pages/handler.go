@@ -1,6 +1,9 @@
 package pages
 
 import (
+	"net/http"
+
+	"github.com/glebbeliaev/purple_dz/internal/vacancy"
 	"github.com/glebbeliaev/purple_dz/pkg/tadaptor"
 	"github.com/glebbeliaev/purple_dz/views"
 	"github.com/gofiber/fiber/v2"
@@ -10,6 +13,7 @@ import (
 type HomeHandler struct {
 	router        fiber.Router
 	cusstomLogger *zerolog.Logger
+	repository    *vacancy.VacancyRepository
 }
 
 type User struct {
@@ -17,9 +21,11 @@ type User struct {
 	Name string
 }
 
-func NewHandler(router fiber.Router) {
+func NewHandler(router fiber.Router, customLoger *zerolog.Logger, repository *vacancy.VacancyRepository) {
 	h := &HomeHandler{
-		router: router,
+		router:        router,
+		cusstomLogger: customLoger,
+		repository:    repository,
 	}
 
 	h.router.Get("/", h.home)
@@ -27,8 +33,13 @@ func NewHandler(router fiber.Router) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	component := views.Main()
-	return tadaptor.Render(c, component)
+	vacancies, err := h.repository.GetAll()
+	if err != nil {
+		h.cusstomLogger.Error().Msg(err.Error())
+		return c.SendStatus(500)
+	}
+	component := views.Main(vacancies)
+	return tadaptor.Render(c, component, http.StatusOK)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {

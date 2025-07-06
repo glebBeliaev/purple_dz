@@ -1,8 +1,11 @@
 package components
 
-templ Title2(title string) {
+templ Title2(title string, isCenter bool) {
     @Title2Style()
-    <h2 class="title2">{title}</h2>
+    <h2 class={
+        "title2",
+        templ.KV("title2-center", isCenter)
+    }>{title}</h2>
 }
 
 templ Title2Style() {
@@ -12,6 +15,8 @@ templ Title2Style() {
         font-weight: 700;
         color: var(--color-black);
         margin: 0;
+    }
+    .title2-center{
         text-align: center;
     }
     </style>

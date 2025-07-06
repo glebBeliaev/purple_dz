@@ -4,6 +4,7 @@ import (
 	"github.com/glebbeliaev/purple_dz/config"
 	"github.com/glebbeliaev/purple_dz/internal/pages"
 	"github.com/glebbeliaev/purple_dz/internal/vacancy"
+	"github.com/glebbeliaev/purple_dz/pkg/database"
 	"github.com/glebbeliaev/purple_dz/pkg/logger"
 	"github.com/gofiber/contrib/fiberzerolog"
 	"github.com/gofiber/fiber/v2"
@@ -14,20 +15,24 @@ func main() {
 	config.Init()
 	config.NewDataBaseConfig()
 	logConfig := config.NewLogConfig()
+	dbConfig := config.NewDataBaseConfig()
 	customLogger := logger.NewLogger(logConfig)
 
-	app := fiber.New(fiber.Config{
-		Prefork: false,
-	})
-
+	app := fiber.New()
 	app.Use(fiberzerolog.New(fiberzerolog.Config{
 		Logger: customLogger,
 	}))
 	app.Use(recover.New())
 	app.Static("/public", "./public")
+	dbpool := database.CreateDbPool(dbConfig, customLogger)
+	defer dbpool.Close()
 
-	pages.NewHandler(app)
-	vacancy.NewHandler(app, customLogger)
+	//REPOSITORIES
+	vacancyRepo := vacancy.NewVacancyRepository(dbpool, customLogger)
+
+	//HANDLERS
+	pages.NewHandler(app, customLogger, vacancyRepo)
+	vacancy.NewHandler(app, customLogger, vacancyRepo)
 
 	app.Listen(":3000")
 }

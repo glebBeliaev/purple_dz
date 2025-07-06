@@ -35,15 +35,15 @@ func VacancyForm() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"vacancy-form\"><div class=\"vacancy-form-headline\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"vacancy-form\" hx-ext=\"response-targets\"><div class=\"vacancy-form-headline\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.Title2("Опубликовать вакансию").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = components.Title2("Опубликовать вакансию", true).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>Введите все необходимые данные для публикации</p></div><div id=\"vacancy-result\"></div><form class=\"vacancy-form-form\" hx-post=\"/vacancy\" hx-trigger=\"submit\" hx-target=\"#vacancy-result\" hx-swap=\"innerHTML swap:0.5s\"><div class=\"vacancy-form-inputs\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>Введите все необходимые данные для публикации</p></div><div id=\"vacancy-result\"></div><form class=\"vacancy-form-form\" hx-post=\"/vacancy\" hx-trigger=\"submit\" hx-target=\"#vacancy-result\" hx-target-error=\"#vacancy-result\" hx-swap=\"innerHTML swap:0.5s\" hx-on::after-request=\"if (event.detail.successful) this.reset()\"><div class=\"vacancy-form-inputs\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -56,7 +56,7 @@ func VacancyForm() templ.Component {
 		}
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Placeholder: "Название компании",
-			Name:        "name",
+			Name:        "company",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

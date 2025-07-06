@@ -10,8 +10,10 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import "github.com/glebbeliaev/purple_dz/views/components"
 import "github.com/glebbeliaev/purple_dz/views/layout"
+import "github.com/glebbeliaev/purple_dz/internal/vacancy"
+import "github.com/glebbeliaev/purple_dz/views/widgets"
 
-func Main() templ.Component {
+func Main(vacancies []vacancy.Vacancy) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -75,6 +77,10 @@ func Main() templ.Component {
 				return nil
 			})
 			templ_7745c5c3_Err = layout.Header().Render(templ.WithChildren(ctx, templ_7745c5c3_Var3), templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = widgets.VacancyList(vacancies).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

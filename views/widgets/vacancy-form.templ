@@ -4,13 +4,20 @@ import "github.com/glebbeliaev/purple_dz/views/components"
 
 templ VacancyForm() {
     @VacancyFormStyle()
-    <div class="vacancy-form">
+    <div class="vacancy-form" hx-ext="response-targets">
         <div class="vacancy-form-headline">
-            @components.Title2("Опубликовать вакансию")
+            @components.Title2("Опубликовать вакансию", true)
             <p>Введите все необходимые данные для публикации</p>
         </div>
         <div id="vacancy-result"></div>
-        <form class="vacancy-form-form" hx-post="/vacancy" hx-trigger="submit" hx-target="#vacancy-result" hx-swap="innerHTML swap:0.5s">
+        <form class="vacancy-form-form"
+            hx-post="/vacancy" 
+            hx-trigger="submit" 
+            hx-target="#vacancy-result"
+            hx-target-error="#vacancy-result"  
+            hx-swap="innerHTML swap:0.5s"
+            hx-on::after-request="if (event.detail.successful) this.reset()"
+        >
             <div class="vacancy-form-inputs">
                 @components.Input(components.InputProps{
                     Placeholder: "Должность",
@@ -18,7 +25,7 @@ templ VacancyForm() {
                 })
                 @components.Input(components.InputProps{
                     Placeholder: "Название компании",
-                    Name: "name",
+                    Name: "company",
                 })
                 @components.Input(components.InputProps{
                     Placeholder: "Сфера компании",
