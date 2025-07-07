@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"math"
 	"net/http"
 
 	"github.com/glebbeliaev/purple_dz/internal/vacancy"
@@ -33,12 +34,15 @@ func NewHandler(router fiber.Router, customLoger *zerolog.Logger, repository *va
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	vacancies, err := h.repository.GetAll()
+	PAGE_ITEMS := 2
+	page := c.QueryInt("page", 1)
+	count := int(math.Ceil(float64(h.repository.CountAll() / PAGE_ITEMS)))
+	vacancies, err := h.repository.GetAll(PAGE_ITEMS, (page-1)*PAGE_ITEMS)
 	if err != nil {
 		h.cusstomLogger.Error().Msg(err.Error())
 		return c.SendStatus(500)
 	}
-	component := views.Main(vacancies)
+	component := views.Main(vacancies, count, page)
 	return tadaptor.Render(c, component, http.StatusOK)
 }
 

@@ -5,7 +5,7 @@ import "github.com/glebbeliaev/purple_dz/views/layout"
 import "github.com/glebbeliaev/purple_dz/internal/vacancy"
 import "github.com/glebbeliaev/purple_dz/views/widgets"
 
-templ Main(vacancies []vacancy.Vacancy) {
+templ Main(vacancies []vacancy.Vacancy, pagesCount, page int) {
 	@layout.Layout(layout.LayoutProps{
 		Title: "Поиск работы",
 		MetaDescription: "Простой поиск работы мечты",
@@ -15,7 +15,7 @@ templ Main(vacancies []vacancy.Vacancy) {
 				@components.Title("Найди работу своей мечты")
 				@components.SubTitle("Простой поиск работы")
 			}
-			@widgets.VacancyList(vacancies)
+			@widgets.VacancyList(vacancies, pagesCount, page)
 			@layout.VacancyFormLayout()
 		</main>
 	}

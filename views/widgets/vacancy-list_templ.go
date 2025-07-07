@@ -10,8 +10,9 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import "github.com/glebbeliaev/purple_dz/views/components"
 import "github.com/glebbeliaev/purple_dz/internal/vacancy"
+import "fmt"
 
-func VacancyList(vacancies []vacancy.Vacancy) templ.Component {
+func VacancyList(vacancies []vacancy.Vacancy, pagesCount, page int) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -44,7 +45,7 @@ func VacancyList(vacancies []vacancy.Vacancy) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p>Найдите подходящую вакансию за пару минут!</p><div class=\"vacancy-list\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p class=\"vacancy__subtitle\">Найдите подходящую вакансию за пару минут!</p><div class=\"vacancy-list\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -62,7 +63,53 @@ func VacancyList(vacancies []vacancy.Vacancy) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><div class=\"vacancy-pagination\"><div class=\"vacancy-pagination__button\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if page != 1 {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<img src=\"/public/icons/chevron-left.svg\"> <a class=\"vacancy-pagination__link\" href=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var2 templ.SafeURL
+			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("/?page=%d", page-1)))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancy-list.templ`, Line: 30, Col: 109}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\">Предыдущие</a>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div><div class=\"vacancy-pagination__button\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if page != pagesCount {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<a class=\"vacancy-pagination__link\" href=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var3 templ.SafeURL
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("/?page=%d", page+1)))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancy-list.templ`, Line: 35, Col: 109}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\">Следующие</a> <img src=\"/public/icons/chevron-right.svg\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -86,12 +133,12 @@ func VacancyListStyle() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
+		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var4 == nil {
+			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n        .vacancy-list__wrapper{\n            display: flex;\n            flex-direction: column;\n            max-width: 1296px;\n            width: 100%;\n            margin: 0 auto;\n            padding: 60px 0;\n        }\n        .vacancy-list__wrapper p{\n            color: var(--color-black);\n            font-size: 16px;\n            font-weight: 400;\n            margin-top: 20px;\n            margin-bottom: 40px;\n        }\n        .vacancy-list{\n            display: flex;\n            flex-direction: column;\n            gap: 24px;\n        }\n    \n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<style>\n        .vacancy-list__wrapper{\n            display: flex;\n            flex-direction: column;\n            max-width: 1296px;\n            width: 100%;\n            margin: 0 auto;\n            padding: 60px 0;\n        }\n        .vacancy__subtitle{\n            color: var(--color-black);\n            font-size: 16px;\n            font-weight: 400;\n            margin-top: 20px;\n            margin-bottom: 40px;\n        }\n        .vacancy-list{\n            display: flex;\n            flex-direction: column;\n            gap: 24px;\n        }\n        .vacancy-pagination{\n            display: flex;\n            justify-content: space-between;\n            gap: 24px;\n            margin-top: 40px;\n        }\n        .vacancy-pagination__button{\n            display: flex;\n            align-items: center;\n            gap: 8px;\n            border-radius: 8px;\n            padding: 15px 16px;\n        }\n        .vacancy-pagination__button:hover{\n            background-color: var(--color-primary-10);\n        }\n        .vacancy-pagination__link{\n            text-decoration: none;\n            color: var(--color-gray-600);\n            font-size: 20px;\n            font-weight: 500;\n        }\n        .vacancy-pagination__button:hover .vacancy-pagination__link{\n            color: var(--color-primary);\n        }\n    \n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
