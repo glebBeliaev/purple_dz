@@ -3,7 +3,7 @@ package config
 import (
 	"log"
 	"os"
-	"strings"
+	"strconv"
 
 	"github.com/joho/godotenv"
 )
@@ -27,14 +27,14 @@ func NewDataBaseConfig() *DataBaseConfig {
 }
 
 type LogConfig struct {
-	Level  string
+	Level  int
 	Format string
 }
 
 func NewLogConfig() *LogConfig {
 	return &LogConfig{
-		Level:  strings.ToLower(strings.TrimSpace(getString("LOG_LEVEL", "info"))),
-		Format: strings.ToLower(strings.TrimSpace(getString("LOG_FORMAT", "json"))),
+		Level:  getInt("LOG_LEVEL", 1),
+		Format: getString("LOG_FORMAT", "json"),
 	}
 }
 
@@ -44,4 +44,13 @@ func getString(key, defaultValue string) string {
 		return defaultValue
 	}
 	return value
+}
+
+func getInt(key string, defaultValue int) int {
+	value := os.Getenv(key)
+	i, err := strconv.Atoi(value)
+	if err != nil {
+		return defaultValue
+	}
+	return i
 }
