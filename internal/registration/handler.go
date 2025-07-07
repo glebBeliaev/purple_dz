@@ -24,7 +24,7 @@ func NewHandler(router fiber.Router) {
 }
 
 func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
-	form := RegistrationFrom{
+	form := RegistrationForm{
 		Name:     c.FormValue("name"),
 		Email:    c.FormValue("email"),
 		Password: c.FormValue("password"),
