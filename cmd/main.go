@@ -29,10 +29,11 @@ func main() {
 	app.Use(recover.New())
 	app.Static("/public", "./public")
 
+	userRepo := registration.NewUserRepository(dbpool)
+
 	pages.NewHandler(app)
 	register.NewHandler(app)
 	registration.NewHandler(app)
-
 	customLogger.Info().Msg("Server started")
 
 	app.Listen(":3000")

@@ -14,7 +14,7 @@ import (
 
 type RegisterHandler struct {
 	router       fiber.Router
-	customLogger zerolog.Logger
+	customLogger *zerolog.Logger
 	repository   *UserRepository
 }
 
@@ -39,6 +39,12 @@ func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
+		return tadapter.Render(c, component)
+	}
+	err := h.repository.addUser(form)
+	if err != nil {
+		h.customLogger.Error().Msg(err.Error())
+		component = components.Notification("Произошла ошибка на сервере, попробуйте позднее", components.NotificationFail)
 		return tadapter.Render(c, component)
 	}
 	component = components.Notification("✅ Регистрация прошла успешно!", components.NotificationSuccess)
