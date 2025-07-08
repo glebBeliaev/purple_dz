@@ -17,12 +17,12 @@ func Init() {
 }
 
 type DataBaseConfig struct {
-	url string
+	Url string
 }
 
 func NewDataBaseConfig() *DataBaseConfig {
 	return &DataBaseConfig{
-		url: getString("DATABASE_URL", "URL"),
+		Url: getString("DATABASE_URL", "URL"),
 	}
 }
 
