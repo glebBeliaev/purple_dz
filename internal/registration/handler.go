@@ -4,6 +4,7 @@ import (
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
+	"github.com/rs/zerolog"
 
 	"github.com/glebbeliaev/purple_dz/pkg/tadapter"
 	"github.com/glebbeliaev/purple_dz/pkg/validator"
@@ -12,7 +13,9 @@ import (
 )
 
 type RegisterHandler struct {
-	router fiber.Router
+	router       fiber.Router
+	customLogger zerolog.Logger
+	repository   *UserRepository
 }
 
 func NewHandler(router fiber.Router) {
