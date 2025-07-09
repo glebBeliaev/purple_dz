@@ -19,5 +19,5 @@ func NewHandler(router fiber.Router) {
 
 func (h *RegisterHandler) register(c *fiber.Ctx) error {
 	component := views.Register()
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, fiber.StatusOK)
 }

@@ -1,6 +1,8 @@
 package registration
 
 import (
+	"net/http"
+
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
@@ -41,14 +43,14 @@ func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
 	var component templ.Component
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 	err := h.repository.addUser(form)
 	if err != nil {
 		h.customLogger.Error().Msg(err.Error())
 		component = components.Notification(err.Error(), components.NotificationFail)
-		return tadapter.Render(c, component)
+		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 	component = components.Notification("✅ Регистрация прошла успешно!", components.NotificationSuccess)
-	return tadapter.Render(c, component)
+	return tadapter.Render(c, component, http.StatusOK)
 }
