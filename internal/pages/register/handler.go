@@ -15,9 +15,15 @@ func NewHandler(router fiber.Router) {
 		router: router,
 	}
 	h.router.Get("/register", h.register)
+	h.router.Get("/login", h.login)
 }
 
 func (h *RegisterHandler) register(c *fiber.Ctx) error {
 	component := views.Register()
+	return tadapter.Render(c, component, fiber.StatusOK)
+}
+
+func (h *RegisterHandler) login(c *fiber.Ctx) error {
+	component := views.Login()
 	return tadapter.Render(c, component, fiber.StatusOK)
 }

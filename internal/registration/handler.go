@@ -1,6 +1,7 @@
 package registration
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -28,6 +29,7 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *U
 	}
 	api := h.router.Group("/api")
 	api.Post("/signUp", h.signUp)
+	api.Post("/login", h.login)
 }
 
 func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
@@ -53,5 +55,32 @@ func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
 		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 	component = components.Notification("✅ Регистрация прошла успешно!", components.NotificationSuccess)
+	return tadapter.Render(c, component, http.StatusOK)
+}
+
+func (h *RegisterHandler) login(c *fiber.Ctx) error {
+	form := LoginForm{
+		Email:    c.FormValue("email"),
+		Password: c.FormValue("password"),
+	}
+
+	errors := validate.Validate(
+		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Введите email"},
+		&validators.StringIsPresent{Name: "Password", Field: form.Password, Message: "Введите пароль"},
+	)
+	if len(errors.Errors) > 0 {
+		h.customLogger.Error().Msg(validator.FormatErrors(errors))
+		component := components.Notification(validator.FormatErrors(errors), components.NotificationFail)
+		return tadapter.Render(c, component, http.StatusBadRequest)
+	}
+
+	username, err := h.repository.loginUser(form.Email, form.Password)
+	if err != nil {
+		h.customLogger.Error().Msg(err.Error())
+		component := components.Notification(err.Error(), components.NotificationFail)
+		return tadapter.Render(c, component, http.StatusBadRequest)
+	}
+
+	component := components.Notification(fmt.Sprintf("Добро пожаловать, %s!", username), components.NotificationSuccess)
 	return tadapter.Render(c, component, http.StatusOK)
 }

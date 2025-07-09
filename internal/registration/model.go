@@ -15,3 +15,8 @@ type User struct {
 	UserName  string    `db:"username"`
 	CreatedAt time.Time `db:"createdat"`
 }
+
+type LoginForm struct {
+	Email    string
+	Password string
+}

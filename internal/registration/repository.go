@@ -46,3 +46,24 @@ func (r *UserRepository) addUser(form RegistrationForm) error {
 	}
 	return nil
 }
+
+func (r *UserRepository) loginUser(email, password string) (string, error) {
+	var hashedPassword, username string
+
+	query := `SELECT pass, username FROM users WHERE email=$1`
+	err := r.Dbpool.QueryRow(context.Background(), query, email).Scan(&hashedPassword, &username)
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return "", fmt.Errorf("неверный email или пароль")
+		}
+		return "", fmt.Errorf("ошибка при поиске пользователя: %v", err)
+	}
+
+	// Сравнение хешированного пароля
+	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+	if err != nil {
+		return "", fmt.Errorf("неверный email или пароль")
+	}
+
+	return username, nil
+}
