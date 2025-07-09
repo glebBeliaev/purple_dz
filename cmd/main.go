@@ -33,7 +33,7 @@ func main() {
 
 	pages.NewHandler(app)
 	register.NewHandler(app)
-	registration.NewHandler(app)
+	registration.NewHandler(app, customLogger, userRepo)
 	customLogger.Info().Msg("Server started")
 
 	app.Listen(":3000")

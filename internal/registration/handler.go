@@ -18,9 +18,11 @@ type RegisterHandler struct {
 	repository   *UserRepository
 }
 
-func NewHandler(router fiber.Router) {
+func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *UserRepository) {
 	h := RegisterHandler{
-		router: router,
+		router:       router,
+		customLogger: customLogger,
+		repository:   repository,
 	}
 	api := h.router.Group("/api")
 	api.Post("/signUp", h.signUp)
@@ -44,7 +46,7 @@ func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
 	err := h.repository.addUser(form)
 	if err != nil {
 		h.customLogger.Error().Msg(err.Error())
-		component = components.Notification("Произошла ошибка на сервере, попробуйте позднее", components.NotificationFail)
+		component = components.Notification(err.Error(), components.NotificationFail)
 		return tadapter.Render(c, component)
 	}
 	component = components.Notification("✅ Регистрация прошла успешно!", components.NotificationSuccess)
