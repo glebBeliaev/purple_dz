@@ -42,6 +42,7 @@ func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
 		&validators.StringIsPresent{Name: "Password", Field: form.Password, Message: "Пароль не задан"})
 	var component templ.Component
 	if len(errors.Errors) > 0 {
+		h.customLogger.Error().Msg(validator.FormatErrors(errors))
 		component = components.Notification(validator.FormatErrors(errors), components.NotificationFail)
 		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
