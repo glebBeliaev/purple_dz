@@ -5,7 +5,7 @@ import "github.com/glebbeliaev/purple_dz/views/widgets"
 import "github.com/glebbeliaev/purple_dz/views/components"
 
   
-templ Register() {
+templ Login() {
     @layout.Layout(layout.LayoutProps{
         Title: "Новости - всё самое главное",
         MetaDescription: "Сайт новостей",
@@ -15,14 +15,7 @@ templ Register() {
     <main class="register-page" hx-ext="response-targets">
         @layout.Header()
         <section class="form-section">
-            @widgets.RegisterForm("Регистрация на сайте"){
-                @components.InputStandart(components.InputStandartProps{
-                Title: "Имя",
-                Name: "name",
-                TypeInput: "text",
-                Placeholder: "",
-                Icon: "", 
-                })
+            @widgets.LoginForm("Вход на сайт"){
                 @components.InputStandart(components.InputStandartProps{
                 Title: "Email",
                 Name: "email",
@@ -38,39 +31,9 @@ templ Register() {
                 Icon: "", 
                 })
             }
-            <div id="singUp-result"></div>
+            <div id="login-result"></div>
         </section>
     </main>
     @layout.Footer()
     }
-}
-
-templ RegisterStyle() {
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-        .register-page{
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-            max-width: 1512px;
-            margin: auto;
-        }
-    </style>
-}
-
-templ FormSectionStyle() {
-    <style>
-        .form-section {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        flex-grow: 1;
-        align-items: center;
-        justify-content: center;
-        }
-    </style>
 }
