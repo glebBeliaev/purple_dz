@@ -21,3 +21,8 @@ type Vacancy struct {
 	Location    string    `db:"location"`
 	CreatedAt   time.Time `db:"createdat"`
 }
+
+type LoginForm struct {
+	Email    string
+	Password string
+}

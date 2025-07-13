@@ -4,12 +4,20 @@ import "github.com/glebbeliaev/purple_dz/views/components"
 
 templ Menu() {
     @MenuStyle()
-    <div class="menu">   
-        <img src="/public/images/logo.svg"/>
+    <div class="menu">
+        <a href="/">
+            <img src="/public/images/logo.svg"/>
+        </a>   
         <div class="menu_right">
-            <a class="menu_right-link">Войти</a>
-            @components.LinkButton("/register"){
+            {{ email := ctx.Value("email").(string)}}
+            if email == ""{
+                <a class="menu_right-link" href="/login">Войти</a>
+                 @components.LinkButton("/register"){
                 <span>Зарегистрироваться</span>
+                }
+            } else {
+                <span class="menu_right__email">{email}</span>
+                <a class="menu_right-link" hx-get="/api/logout" hx-trigger="click">Выйти</a>
             }
         </div>
     </div>
@@ -25,6 +33,7 @@ templ MenuStyle() {
                 padding: 20px 0;
                 max-width: 1296px;
                 margin: auto;
+                margin-bottom: 100px;
         }
         .menu_right{
             display: flex;
@@ -35,7 +44,11 @@ templ MenuStyle() {
             cursor: pointer;
             text-decoration: none;
             font-size: 16px;
-            color: #FFFFFF;
+            color: var(--color-white);
+        }
+        .menu_right__email{
+            color: var(--color-white);
+            font-size: 16px;
         }
         .menu_right-link:hover{
             color: #10b989;

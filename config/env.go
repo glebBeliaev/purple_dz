@@ -22,7 +22,7 @@ type DataBaseConfig struct {
 
 func NewDataBaseConfig() *DataBaseConfig {
 	return &DataBaseConfig{
-		Url: getString("DATABASE_URL", "URL"),
+		Url: getString("DATABASE_URL_JOB", "URL"),
 	}
 }
 

@@ -1,0 +1,35 @@
+package views
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+import "github.com/glebbeliaev/purple_dz/views/layout"
+import "github.com/glebbeliaev/purple_dz/views/widgets"
+
+templ Login() {
+    @HeroStyle()
+    @layout.Layout(layout.LayoutProps{
+		Title: "Вход на сайт",
+		MetaDescription: "Вход на сайт поиска работы",
+	}){
+		<main>
+            <div class="hero">
+            @layout.Header(){
+				@components.Title("Войти на сайт")
+				@components.SubTitle("Войдите под своей учётной записью")
+                @widgets.LoginForm()
+			}
+            </div>
+		</main>
+	}   
+}
+
+templ HeroStyle() {
+    <style>
+        .hero{
+            display: flex;
+            flex-direction: column;
+            max-height: 800px;
+            height: 100vh;
+        }
+    </style>
+    
+}
