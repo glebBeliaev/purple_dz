@@ -6,7 +6,8 @@ templ LoginForm(headline string) {
     @LoginFormStyle()
     <div class="register-form">
     @components.TitleSection(headline)
-    <form hx-post="/api/login" 
+    <form 
+        hx-post="/api/login" 
         hx-trigger="submit" 
         hx-target="#login-result" 
         hx-swap="innerHTML" 

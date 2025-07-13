@@ -3,11 +3,22 @@ package components
 type ButtonSelectorProps struct {
     URL string
     Label string
+    HxGet string
+    HxTrigger string
 }
 
 templ ButtonSelector(props ButtonSelectorProps) {
     @ButtonSelectorStyle()
-    <a href={props.URL} class="button-selector">
+    <a 
+        href={props.URL} 
+        class="button-selector"
+        if props.HxGet != "" {
+            hx-get={props.HxGet}
+        }
+        if props.HxTrigger != "" {
+            hx-trigger={props.HxTrigger}
+        }
+    >
         <h5>{props.Label}</h5>
         <svg
             xmlns="http://www.w3.org/2000/svg"

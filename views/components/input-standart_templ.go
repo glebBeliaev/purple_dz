@@ -64,14 +64,14 @@ func InputStandart(props InputStandartProps) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"input-standart-wrapper\"><input type=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"input-standart-wrapper\"><input class=\"input-input\" type=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(props.TypeInput)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 40}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 60}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -84,7 +84,7 @@ func InputStandart(props InputStandartProps) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(props.Placeholder)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 72}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 92}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -97,7 +97,7 @@ func InputStandart(props InputStandartProps) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(props.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 90}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/input-standart.templ`, Line: 19, Col: 110}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -126,7 +126,7 @@ func InputStandart(props InputStandartProps) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div><span class=\"input-standart-description\"></span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -155,7 +155,7 @@ func InputStandartStyle() templ.Component {
 			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<style>\n    .input-standart{\n        display: flex;\n        flex-direction: column;\n        gap: 8px;\n    }\n    .input-standart-wrapper {\n        position: relative;\n        width: 100%;\n    }\n\n    .input-standart-wrapper input {\n        width: 100%;\n        height: 48px;\n        padding: 12px 16px 12px 16px;\n        border: none;\n        border-radius: 12px;\n        background-color: var(--color-gray);\n        font-size: 12px;\n        font-weight: 400;\n        color: var(--color-black-75);\n        outline: none;\n    }\n\n    .search-button {\n        position: absolute;\n        right: 12px;\n        top: 50%;\n        transform: translateY(-50%);\n        background: none;\n        border: none;\n        padding: 0;\n        cursor: pointer;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .search-button img {\n        width: 20px;\n        height: 20px;\n    }\n\n    .input-standart-wrapper input:not(:placeholder-shown) {\n        font-size: 16px;\n        color: var(--color-black);\n    }\n</style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<style>\n    .input-standart{\n        display: flex;\n        flex-direction: column;\n        gap: 8px;\n        margin: 0;\n    }\n    .input-standart-wrapper {\n        position: relative;\n        width: 100%;\n    }\n\n    .input-input {\n        width: 100%;\n        height: 48px;\n        padding: 15px 16px 15px 16px;\n        border: none;\n        border-radius: 12px;\n        background-color: var(--color-gray);\n        font-size: 12px;\n        font-weight: 400;\n        color: var(--color-black-75);\n        outline: none;\n    }\n\n    .search-button {\n        position: absolute;\n        right: 12px;\n        top: 50%;\n        transform: translateY(-50%);\n        background: none;\n        border: none;\n        padding: 0;\n        cursor: pointer;\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .search-button img {\n        width: 20px;\n        height: 20px;\n    }\n\n    .input-standart-wrapper input:not(:placeholder-shown) {\n        font-size: 16px;\n        color: var(--color-black);\n    }\n</style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

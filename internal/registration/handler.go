@@ -1,7 +1,6 @@
 package registration
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -13,23 +12,27 @@ import (
 	"github.com/glebbeliaev/purple_dz/pkg/validator"
 	"github.com/glebbeliaev/purple_dz/views/components"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
 )
 
 type RegisterHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
 	repository   *UserRepository
+	store        *session.Store
 }
 
-func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *UserRepository) {
+func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *UserRepository, store *session.Store) {
 	h := RegisterHandler{
 		router:       router,
 		customLogger: customLogger,
 		repository:   repository,
+		store:        store,
 	}
 	api := h.router.Group("/api")
 	api.Post("/signUp", h.signUp)
 	api.Post("/login", h.login)
+	api.Get("/logout", h.logout)
 }
 
 func (h *RegisterHandler) signUp(c *fiber.Ctx) error {
@@ -74,13 +77,32 @@ func (h *RegisterHandler) login(c *fiber.Ctx) error {
 		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
 
-	username, err := h.repository.loginUser(form.Email, form.Password)
+	userName, err := h.repository.loginUser(form.Email, form.Password)
 	if err != nil {
 		h.customLogger.Error().Msg(err.Error())
 		component := components.Notification(err.Error(), components.NotificationFail)
 		return tadapter.Render(c, component, http.StatusBadRequest)
 	}
+	session, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	session.Set("userName", userName)
+	if err := session.Save(); err != nil {
+		panic(err)
+	}
+	c.Response().Header.Add("HX-Redirect", "/")
+	return c.Redirect("/", http.StatusOK)
+}
 
-	component := components.Notification(fmt.Sprintf("Добро пожаловать, %s!", username), components.NotificationSuccess)
-	return tadapter.Render(c, component, http.StatusOK)
+func (h *RegisterHandler) logout(c *fiber.Ctx) error {
+	session, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	if err := session.Destroy(); err != nil {
+		return err
+	}
+	c.Response().Header.Add("HX-Redirect", "/")
+	return c.Redirect("/", http.StatusOK)
 }
