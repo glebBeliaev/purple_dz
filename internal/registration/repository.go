@@ -36,14 +36,15 @@ func (r *UserRepository) addUser(form RegistrationForm) error {
 	}
 
 	_, err = r.Dbpool.Exec(context.Background(), query, args)
-if ok := errors.As(err, &pgErr); ok && pgErr.Code == "23505" {
-    if pgErr.ConstraintName == "users_email_key" {
-        return fmt.Errorf("email уже используется")
-    } else if pgErr.ConstraintName == "users_username_key" {
-        return fmt.Errorf("имя пользователя уже используется")
-    }
-    return fmt.Errorf("нарушение уникальности данных: %v", err)
-}
+	var pgErr *pgconn.PgError
+	if ok := errors.As(err, &pgErr); ok && pgErr.Code == "23505" {
+		if pgErr.ConstraintName == "users_email_key" {
+			return fmt.Errorf("email уже используется")
+		} else if pgErr.ConstraintName == "users_username_key" {
+			return fmt.Errorf("имя пользователя уже используется")
+		}
+		return fmt.Errorf("нарушение уникальности данных: %v", err)
+	}
 	return nil
 }
 
