@@ -63,17 +63,44 @@ func Banners() templ.Component {
 				Headline:    "Несколько мониторов - Зло!",
 				Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
 				ImgLink:     "/public/images/banners/banner_display.png",
+				FullSize:    true,
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.CardBanner(components.BannerCardProps{
+				Headline:    "Несколько мониторов - Зло!",
+				Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
+				ImgLink:     "/public/images/posts/post1.png",
+				FullSize:    true,
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.CardBanner(components.BannerCardProps{
+				Headline:    "Несколько мониторов - Зло!",
+				Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
+				ImgLink:     "/public/images/posts/post2.png",
+				FullSize:    true,
 			}).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			return nil
 		})
-		templ_7745c5c3_Err = Slider().Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = Slider(0, 3).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -102,7 +129,7 @@ func BannersStyle() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n    .banners{\n        display: flex;\n        gap: 24px;\n        max-width: 1512px;\n        width: 100%;\n    }\n\n    .left-banners{\n        display: flex;\n        gap: 24px;\n        flex: 1;\n    }\n    .slider{\n        display: flex;\n        flex: 1;\n\n    }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n    .banners{\n        display: flex;\n        gap: 24px;\n        max-width: 1512px;\n        width: 100%;\n    }\n\n    .left-banners{\n        display: flex;\n        gap: 24px;\n        flex: 1;\n    }\n    .slider{\n        display: flex;\n        flex: 1;\n        width: 100%;\n    }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
