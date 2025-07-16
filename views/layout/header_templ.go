@@ -65,21 +65,46 @@ func Header() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
-			URL:   "/login",
-			Label: "Вход",
-		}).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		userName := ctx.Value("userName").(string)
+		if userName != "" {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"profile\"><div class=\"avatar_default\"><img src=\"/public/icons/profile.svg\"></div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.ButtonSelector(components.ButtonSelectorProps{
+				URL:       "",
+				Label:     ctx.Value("userName").(string),
+				HxGet:     "api/logout",
+				HxTrigger: "click",
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
+				URL:   "/login",
+				Label: "Вход",
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " ")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
+				URL:   "/register",
+				Label: "Регистрация",
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
-		templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
-			URL:   "/register",
-			Label: "Регистрация",
-		}).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></section>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -108,7 +133,7 @@ func HeaderStyle() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<style>\n    .header{\n        display: flex;\n        justify-content: space-between;\n        height: 48px;\n        max-width: 1512px;\n        width: 100%;\n        margin: auto;\n        margin-top: 45px;\n    }\n\n    .left-header{\n        display: flex;\n        gap: 68px;\n        align-items: center;\n    }\n\n    .right-header{\n        display: flex;\n        gap: 24px;\n        align-items: center;\n    }\n    .right-header .input-standart-wrapper{\n        width: 360px;\n    }\n\n    .logo{\n        font-size: 22px;\n        font-weight: 700;\n        color: var(--color-secondary);\n        text-decoration: none;\n    }\n    \n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<style>\n    .header{\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        height: 48px;\n        max-width: 1512px;\n        width: 100%;\n        margin: auto;\n        margin-top: 45px;\n    }\n\n    .left-header{\n        display: flex;\n        gap: 68px;\n        align-items: center;\n    }\n\n    .right-header{\n        display: flex;\n        gap: 24px;\n        align-items: center;\n    }\n    .right-header .input-standart-wrapper{\n        width: 360px;\n    }\n\n    .logo{\n        font-size: 22px;\n        font-weight: 700;\n        color: var(--color-secondary);\n        text-decoration: none;\n    }\n    .avatar_default{\n        width: 48px;\n        height: 48px;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        background-color: var(--color-gray);\n        border-radius: 12px;\n    }\n    .avatar_default img{\n        height: 24px;\n        width: 24px;\n        opacity: 0.6;\n    }\n    .profile{\n        margin: 0;\n        display: flex;\n        align-items: center;\n        gap: 8px;\n        height: 48px;\n    }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -16,14 +16,13 @@ templ InputStandart(props InputStandartProps) {
             <h5>{props.Title}</h5>
         }
         <div class="input-standart-wrapper">
-            <input type={props.TypeInput} placeholder={props.Placeholder} name={props.Name}/>
+            <input class="input-input" type={props.TypeInput} placeholder={props.Placeholder} name={props.Name}/>
             if props.Icon !=""{
                 <button type="submit" class="search-button">
                     <img src={props.Icon} alt="Поиск" />
                 </button>
             }
         </div>
-        <span class="input-standart-description"></span>
     </div> 
 }
 
@@ -33,16 +32,17 @@ templ InputStandartStyle() {
         display: flex;
         flex-direction: column;
         gap: 8px;
+        margin: 0;
     }
     .input-standart-wrapper {
         position: relative;
         width: 100%;
     }
 
-    .input-standart-wrapper input {
+    .input-input {
         width: 100%;
         height: 48px;
-        padding: 12px 16px 12px 16px;
+        padding: 15px 16px 15px 16px;
         border: none;
         border-radius: 12px;
         background-color: var(--color-gray);

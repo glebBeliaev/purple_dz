@@ -34,16 +34,20 @@ func (r *UserRepository) addUser(form RegistrationForm) error {
 		"pass":     string(hashedPassword),
 		"username": form.Name,
 	}
-
 	_, err = r.Dbpool.Exec(context.Background(), query, args)
 	var pgErr *pgconn.PgError
 	if ok := errors.As(err, &pgErr); ok && pgErr.Code == "23505" {
-		if pgErr.ConstraintName == "users_email_key" {
+		switch pgErr.ConstraintName {
+		case "users_email_key":
 			return fmt.Errorf("email уже используется")
-		} else if pgErr.ConstraintName == "users_username_key" {
+		case "users_username_key":
 			return fmt.Errorf("имя пользователя уже используется")
+		default:
+			return fmt.Errorf("нарушение уникальности данных: %v", err)
 		}
-		return fmt.Errorf("нарушение уникальности данных: %v", err)
+	}
+	if err != nil {
+		return fmt.Errorf("не удалось сохранить пользователя: %v", err)
 	}
 	return nil
 }
