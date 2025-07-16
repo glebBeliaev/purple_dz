@@ -1,6 +1,7 @@
 package registration
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/a-h/templ"
@@ -85,11 +86,13 @@ func (h *RegisterHandler) login(c *fiber.Ctx) error {
 	}
 	session, err := h.store.Get(c)
 	if err != nil {
-		panic(err)
+		log.Printf("Ошибка получения сессии: %v", err)
+		return c.Redirect("/login", fiber.StatusSeeOther)
 	}
 	session.Set("userName", userName)
 	if err := session.Save(); err != nil {
-		panic(err)
+		log.Printf("Ошибка получения сессии: %v", err)
+		return c.Redirect("/login", fiber.StatusSeeOther)
 	}
 	c.Response().Header.Add("HX-Redirect", "/")
 	return c.Redirect("/", http.StatusOK)
@@ -98,10 +101,12 @@ func (h *RegisterHandler) login(c *fiber.Ctx) error {
 func (h *RegisterHandler) logout(c *fiber.Ctx) error {
 	session, err := h.store.Get(c)
 	if err != nil {
-		panic(err)
+		log.Printf("Ошибка получения сессии: %v", err)
+		return c.Redirect("/login", fiber.StatusSeeOther)
 	}
 	if err := session.Destroy(); err != nil {
-		return err
+		log.Printf("Ошибка удаления сессии: %v", err)
+		return c.Status(fiber.StatusInternalServerError).SendString("Ошибка при выходе из аккаунта")
 	}
 	c.Response().Header.Add("HX-Redirect", "/")
 	return c.Redirect("/", http.StatusOK)
