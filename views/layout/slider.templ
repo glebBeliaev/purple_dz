@@ -1,8 +1,164 @@
 package layout
 
-
-templ Slider() {
+templ Slider(activeIndex int, total int) {
+    @SliderScript()
+    @SliderStyle()
     <div class="slider">
-     {children...}
+        <div class="slider__buttons">
+            <button class="slider__button slider__button--left">
+                <img src="/public/icons/arrow-left.svg"/>
+            </button>
+            <button class="slider__button slider__button--right">
+                <img src="/public/icons/arrow-right.svg"/>
+            </button>
+        </div>
+
+        <div class="slider__content-wrapper">
+            <div class="slider__content js-slider-track">
+                {children...}
+            </div>
+        </div>
+
+
+       <div class="slider__indicators">
+            for i := 0; i < total; i++ {
+                if i == activeIndex {
+                    <div class="slider__dot active" data-index={i}></div>
+                } else {
+                    <div class="slider__dot" data-index={i}></div>
+                }
+            }
+        </div>
     </div>
 }
+
+templ SliderScript() {
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.querySelector('.slider');
+        const track = slider.querySelector('.js-slider-track');
+        const btnLeft = slider.querySelector('.slider__button--left');
+        const btnRight = slider.querySelector('.slider__button--right');
+        const dots = slider.querySelectorAll('.slider__dot');
+        const totalSlides = dots.length;
+        let currentIndex = 0;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        btnLeft.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+
+        btnRight.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        });
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                const index = parseInt(e.target.getAttribute('data-index'), 10);
+                if (!isNaN(index)) {
+                    currentIndex = index;
+                    updateSlider();
+                }
+            });
+        });
+
+
+        updateSlider();
+    });
+</script>
+
+
+}
+
+
+templ SliderStyle() {
+    <style>
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .slider__content {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider__buttons {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 16px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .slider__button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 12px;
+            background: var(--color-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: all;
+        }
+
+        .slider__button img {
+            width: 24px;
+            height: 24px;
+        }
+        .slider__indicators {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .slider__dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50px;
+            background-color: var(--color-white-50);
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .slider__dot.active {
+            background-color: var(--color-white);
+            width: 24px;
+        }
+        .slider__content-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slider__content {
+            display: flex;
+            transition: transform 0.2s ease;
+            height: 100%;
+        }
+
+    </style>
+}
+
+

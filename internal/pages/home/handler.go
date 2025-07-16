@@ -4,19 +4,22 @@ import (
 	"github.com/glebbeliaev/purple_dz/pkg/tadapter"
 	"github.com/glebbeliaev/purple_dz/views"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/session"
 )
 
 type HomeHandler struct {
-	router fiber.Router
+	router  fiber.Router
+	storage *session.Store
 }
 
 type Catalog struct {
 	CategoryName string
 }
 
-func NewHandler(router fiber.Router) {
+func NewHandler(router fiber.Router, storage *session.Store) {
 	h := &HomeHandler{
-		router: router,
+		router:  router,
+		storage: storage,
 	}
 
 	h.router.Get("/", h.home)

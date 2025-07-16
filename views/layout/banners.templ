@@ -9,11 +9,24 @@ templ Banners() {
             { children... }
         </div>
         <div class="slider">
-            @Slider(){
+            @Slider(0, 3){
                 @components.CardBanner(components.BannerCardProps{
                     Headline: "Несколько мониторов - Зло!",
                     Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
                     ImgLink: "/public/images/banners/banner_display.png",
+                    FullSize: true,
+                })
+                 @components.CardBanner(components.BannerCardProps{
+                    Headline: "Несколько мониторов - Зло!",
+                    Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
+                    ImgLink: "/public/images/posts/post1.png",
+                    FullSize: true,
+                })
+                 @components.CardBanner(components.BannerCardProps{
+                    Headline: "Несколько мониторов - Зло!",
+                    Description: "Большинство людей используют несколько мониторов. Сегодня мы разберём почему это может быть очень не эффективно и как с этим бороться",
+                    ImgLink: "/public/images/posts/post2.png",
+                    FullSize: true,
                 })
             }
         </div>
@@ -37,8 +50,7 @@ templ BannersStyle() {
     .slider{
         display: flex;
         flex: 1;
-
+        width: 100%;
     }
-    </style>
-    
+    </style>  
 }

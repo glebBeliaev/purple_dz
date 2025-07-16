@@ -22,14 +22,30 @@ templ Header() {
             TypeInput: "text",
             Icon: "/public/icons/search.svg", 
             })
-        @components.ButtonLink(components.ButtonLinkProps{
+
+        {{ userName := ctx.Value("userName").(string)}}
+        if userName !=""{
+            <div class="profile">
+                <div class="avatar_default">
+                    <img src="/public/icons/profile.svg"/>
+                </div>
+                @components.ButtonSelector(components.ButtonSelectorProps{
+                URL: "",
+                Label:  ctx.Value("userName").(string),
+                HxGet: "api/logout",
+                HxTrigger: "click",
+                })
+            </div>
+        } else {
+            @components.ButtonLink(components.ButtonLinkProps{
             URL: "/login",
             Label: "Вход",
-        })
-        @components.ButtonLink(components.ButtonLinkProps{
-            URL: "/register",
-            Label: "Регистрация",
-        })
+             })
+            @components.ButtonLink(components.ButtonLinkProps{
+                URL: "/register",
+                Label: "Регистрация",
+            })
+        }      
         </div>
     </section>
 }
@@ -39,6 +55,7 @@ templ HeaderStyle() {
     .header{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         height: 48px;
         max-width: 1512px;
         width: 100%;
@@ -67,6 +84,26 @@ templ HeaderStyle() {
         color: var(--color-secondary);
         text-decoration: none;
     }
-    
+    .avatar_default{
+        width: 48px;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-gray);
+        border-radius: 12px;
+    }
+    .avatar_default img{
+        height: 24px;
+        width: 24px;
+        opacity: 0.6;
+    }
+    .profile{
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 48px;
+    }
     </style>
 }
