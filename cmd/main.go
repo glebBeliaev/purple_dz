@@ -5,6 +5,7 @@ import (
 
 	"github.com/glebbeliaev/purple_dz/config"
 	"github.com/glebbeliaev/purple_dz/internal/pages"
+	"github.com/glebbeliaev/purple_dz/internal/sitemap"
 	"github.com/glebbeliaev/purple_dz/internal/vacancy"
 	"github.com/glebbeliaev/purple_dz/middleware"
 	"github.com/glebbeliaev/purple_dz/pkg/database"
@@ -47,6 +48,7 @@ func main() {
 	//HANDLERS
 	pages.NewHandler(app, customLogger, vacancyRepo, store)
 	vacancy.NewHandler(app, customLogger, vacancyRepo)
+	sitemap.NewHandler(app)
 
 	app.Listen(":3000")
 }
