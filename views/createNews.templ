@@ -1,0 +1,65 @@
+package views
+  
+import "github.com/glebbeliaev/purple_dz/views/layout"
+import "github.com/glebbeliaev/purple_dz/views/widgets"
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+
+templ CreateNews() {
+    @CreateNewsStyle()
+    @FormSectionStyle()
+    @layout.Layout(layout.LayoutProps{
+        Title: "Новости - всё самое главное",
+        MetaDescription: "Сайт новостей",
+    }){
+    <main class="create-news-page" hx-ext="response-targets">
+        @layout.Header()
+        <section class="form-section">
+            @widgets.LoginForm("Создание новости"){
+                @components.InputStandart(components.InputStandartProps{
+                Title: "Заголовок",
+                Name: "title",
+                TypeInput: "text",
+                Placeholder: "",
+                Icon: "", 
+                })
+                @components.InputStandart(components.InputStandartProps{
+                Title: "Превью",
+                Name: "preview",
+                TypeInput: "text",
+                Placeholder: "",
+                Icon: "",
+                BigText: true, 
+                })
+                @components.InputStandart(components.InputStandartProps{
+                Title: "Текст",
+                Name: "text",
+                TypeInput: "text",
+                Placeholder: "",
+                Icon: "",
+                BigText: true, 
+                })
+            }
+            <div id="login-result"></div>
+        </section>
+    </main>
+    @layout.Footer()
+    }
+}
+
+templ CreateNewsStyle() {
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    .create-news-page{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        max-width: 1512px;
+        margin: auto;
+    } 
+    </style>
+}

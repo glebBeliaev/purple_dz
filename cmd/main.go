@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/glebbeliaev/purple_dz/config"
+	createnews "github.com/glebbeliaev/purple_dz/internal/pages/createNews"
 	pages "github.com/glebbeliaev/purple_dz/internal/pages/home"
 	"github.com/glebbeliaev/purple_dz/internal/pages/register"
 	"github.com/glebbeliaev/purple_dz/internal/registration"
@@ -47,9 +48,11 @@ func main() {
 
 	userRepo := registration.NewUserRepository(dbpool)
 
+	//Handlers
 	pages.NewHandler(app, store)
 	register.NewHandler(app, store)
 	registration.NewHandler(app, customLogger, userRepo, store)
+	createnews.NewHandler(app, store)
 	customLogger.Info().Msg("Server started")
 
 	app.Listen(":3000")

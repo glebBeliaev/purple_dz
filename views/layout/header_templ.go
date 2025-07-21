@@ -47,8 +47,8 @@ func Header() templ.Component {
 			return templ_7745c5c3_Err
 		}
 		templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
-			URL:   "/contacts",
-			Label: "Контакты",
+			URL:   "/createNews",
+			Label: "Создать новость",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
