@@ -1,0 +1,50 @@
+package widgets
+
+import "github.com/glebbeliaev/purple_dz/views/components"
+
+templ CreateNewsForm(headline string) {
+    @CreateNewsFormStyle()
+    <div class="register-form">
+    @components.TitleSection(headline)
+    <form 
+        hx-post="/api/login" 
+        hx-trigger="submit" 
+        hx-target="#news-result" 
+        hx-swap="innerHTML" 
+        hx-target-error="#news-result" 
+        hx-on::after-request="if (event.detail.xhr.status === 200) this.reset()"
+    >
+            <div class="register-form__form__inputs">
+                {children...}
+            </div>
+            @components.ButtonPrimary(){
+                Создать новость
+            }
+    </form>
+    </div> 
+}
+
+templ CreateNewsFormStyle() {
+    <style>
+        .register-form{
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+            max-width: 488px;
+        }
+        .register-form form{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        .register-form__form__inputs{
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+    
+    </style>
+}

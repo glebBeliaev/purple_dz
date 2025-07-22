@@ -14,10 +14,12 @@ func MiddlewareAuth(storage *session.Store) fiber.Handler {
 			log.Printf("Ошибка получения сессии: %v", err)
 			return c.Redirect("/login", fiber.StatusSeeOther)
 		}
+
 		userEmail := ""
 		if email, ok := session.Get("userName").(string); ok {
 			userEmail = email
 		}
+
 		c.Locals("userName", userEmail)
 		return c.Next()
 	}

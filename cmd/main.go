@@ -52,7 +52,7 @@ func main() {
 	pages.NewHandler(app, store)
 	register.NewHandler(app, store)
 	registration.NewHandler(app, customLogger, userRepo, store)
-	createnews.NewHandler(app, store)
+	createnews.NewHandler(app, store, customLogger, userRepo)
 	customLogger.Info().Msg("Server started")
 
 	app.Listen(":3000")

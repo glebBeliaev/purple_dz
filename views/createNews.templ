@@ -15,7 +15,7 @@ templ CreateNews() {
     <main class="create-news-page" hx-ext="response-targets">
         @layout.Header()
         <section class="form-section">
-            @widgets.LoginForm("Создание новости"){
+            @widgets.CreateNewsForm("Создание новости"){
                 @components.InputStandart(components.InputStandartProps{
                 Title: "Заголовок",
                 Name: "title",
@@ -40,7 +40,7 @@ templ CreateNews() {
                 BigText: true, 
                 })
             }
-            <div id="login-result"></div>
+            <div id="news-result"></div>
         </section>
     </main>
     @layout.Footer()
