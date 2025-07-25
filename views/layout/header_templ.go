@@ -46,12 +46,15 @@ func Header() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
-			URL:   "/createNews",
-			Label: "Создать новость",
-		}).Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		userName := ctx.Value("userName").(string)
+		if userName != "" {
+			templ_7745c5c3_Err = components.ButtonLink(components.ButtonLinkProps{
+				URL:   "/createNews",
+				Label: "Создать новость",
+			}).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div><div class=\"right-header\">")
 		if templ_7745c5c3_Err != nil {
@@ -65,7 +68,6 @@ func Header() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		userName := ctx.Value("userName").(string)
 		if userName != "" {
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"profile\"><div class=\"avatar_default\"><img src=\"/public/icons/profile.svg\"></div>")
 			if templ_7745c5c3_Err != nil {

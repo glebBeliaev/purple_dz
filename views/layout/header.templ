@@ -11,10 +11,14 @@ templ Header() {
             URL: "/category",
             Label: "Категории",
         })
-        @components.ButtonLink(components.ButtonLinkProps{
+        {{ userName := ctx.Value("userName").(string)}}
+        if userName !=""{
+            @components.ButtonLink(components.ButtonLinkProps{
             URL: "/createNews",
             Label: "Создать новость",
-        })
+            })
+        }
+        
         </div>
         <div class="right-header">
         @components.InputStandart(components.InputStandartProps{
@@ -23,7 +27,7 @@ templ Header() {
             Icon: "/public/icons/search.svg", 
             })
 
-        {{ userName := ctx.Value("userName").(string)}}
+        
         if userName !=""{
             <div class="profile">
                 <div class="avatar_default">
