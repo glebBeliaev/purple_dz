@@ -4,11 +4,15 @@ type BannerCardProps struct{
     Headline string
     Description string
     ImgLink string
+    FullSize bool
 }
 
 templ CardBanner(props BannerCardProps) {
     @CardBannerStyle(props)
-    <div class="banner-card" style={"background-image: url(" + props.ImgLink + ");"}>
+    <div 
+        class={ "banner-card", templ.KV("card-banner--full", props.FullSize),} 
+        style={"background-image: url(" + props.ImgLink + ");"}
+    >
         <div class="banner-content">
         <h3>{props.Headline}</h3>
         <p class="banner-card-description">{props.Description}</p>
@@ -28,6 +32,11 @@ templ CardBannerStyle(props BannerCardProps) {
             align-items: flex-end;
             width: 100%;
         }
+        .card-banner--full {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
 
         .banner-content {
             display: flex;
