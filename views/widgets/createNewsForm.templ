@@ -7,7 +7,7 @@ templ CreateNewsForm(headline string) {
     <div class="register-form">
     @components.TitleSection(headline)
     <form 
-        hx-post="/api/login" 
+        hx-post="/news/create" 
         hx-trigger="submit" 
         hx-target="#news-result" 
         hx-swap="innerHTML" 

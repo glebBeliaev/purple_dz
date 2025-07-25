@@ -28,7 +28,9 @@ func NewHandler(router fiber.Router, store *session.Store, customLogger *zerolog
 
 func (h *CreateNewsHandler) createNews(c *fiber.Ctx) error {
 	userName := c.Locals("userName").(string)
-	h.customLogger.Info().Msg(userName)
-	component := views.CreateNews()
-	return tadapter.Render(c, component, fiber.StatusOK)
+	if userName != "" {
+		component := views.CreateNews()
+		return tadapter.Render(c, component, fiber.StatusOK)
+	}
+	return c.Redirect("/login", fiber.StatusSeeOther)
 }
