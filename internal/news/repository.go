@@ -16,9 +16,9 @@ func NewNewsRepository(dbpool *pgxpool.Pool) *NewsRepository {
 	}
 }
 
-func (r *NewsRepository) CreateNews(news News) error {
-	query := `INSERT INTO news (title, content, author_email) VALUES ($1, $2, $3)`
-	_, err := r.Dbpool.Exec(context.Background(), query, news.Title, news.Content, news.AuthorEmail)
+func (r *NewsRepository) createNews(form NewsForm) error {
+	query := `INSERT INTO news (title, preview, content, author) VALUES ($1, $2, $3, $4)`
+	_, err := r.Dbpool.Exec(context.Background(), query, form.Title, form.Preview, form.Content, form.Author)
 	if err != nil {
 		return err
 	}

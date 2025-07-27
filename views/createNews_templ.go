@@ -108,7 +108,7 @@ func CreateNews() templ.Component {
 				}
 				templ_7745c5c3_Err = components.InputStandart(components.InputStandartProps{
 					Title:       "Текст",
-					Name:        "text",
+					Name:        "content",
 					TypeInput:   "text",
 					Placeholder: "",
 					Icon:        "",
