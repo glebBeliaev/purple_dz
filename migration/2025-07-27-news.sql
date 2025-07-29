@@ -3,6 +3,8 @@ CREATE TABLE news (
     title VARCHAR(255) NOT NULL,
     preview VARCHAR(255) NOT NULL,
 	content TEXT NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    cover VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     datacreate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )

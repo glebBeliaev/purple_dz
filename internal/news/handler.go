@@ -37,15 +37,18 @@ func (h *CreateNewsHandler) createNews(c *fiber.Ctx) error {
 	Author := c.Locals("userName").(string)
 
 	form := NewsForm{
-		Title:   c.FormValue("title"),
-		Preview: c.FormValue("preview"),
-		Content: c.FormValue("content"),
-		Author:  Author,
+		Title:    c.FormValue("title"),
+		Preview:  c.FormValue("preview"),
+		Content:  c.FormValue("content"),
+		Cover:    c.FormValue("cover"),
+		Category: c.FormValue("category"),
+		Author:   Author,
 	}
 	errors := validate.Validate(
 		&validators.StringIsPresent{Name: "title", Field: form.Title, Message: "Заголовок не задан"},
 		&validators.StringIsPresent{Name: "preview", Field: form.Preview, Message: "Превью не задано"},
-		&validators.StringIsPresent{Name: "content", Field: form.Content, Message: "Текст не задан"})
+		&validators.StringIsPresent{Name: "content", Field: form.Content, Message: "Текст не задан"},
+		&validators.StringIsPresent{Name: "cover", Field: form.Cover, Message: "Картинка не задана"})
 	var component templ.Component
 
 	if len(errors.Errors) > 0 {

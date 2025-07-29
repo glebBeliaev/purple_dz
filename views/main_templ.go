@@ -217,7 +217,7 @@ func Main() templ.Component {
 					}
 					ctx = templ.InitializeContext(ctx)
 					templ_7745c5c3_Err = components.CardAuthor(components.CardAuthorProps{
-						AvatarURL: "/public/images/avatars/ava_mihail.png",
+						AvatarURL: "/public/icons/no-avatar.svg",
 						Name:      "Михаил Аршинов",
 						Date:      "Август 18, 2025",
 					}).Render(ctx, templ_7745c5c3_Buffer)
@@ -251,7 +251,7 @@ func Main() templ.Component {
 					}
 					ctx = templ.InitializeContext(ctx)
 					templ_7745c5c3_Err = components.CardAuthor(components.CardAuthorProps{
-						AvatarURL: "/public/images/avatars/vasya.png",
+						AvatarURL: "/public/icons/no-avatar.svg",
 						Name:      "Вася Программист",
 						Date:      "Июль 25, 2025",
 					}).Render(ctx, templ_7745c5c3_Buffer)

@@ -106,16 +106,29 @@ func CreateNews() templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = components.SelectStandart(components.SelectStandartProps{
-					Title:    "Категория",
-					Name:     "category",
-					Options:  []string{"Общее", "Обновления", "Важно"},
-					Selected: "Общее",
+				templ_7745c5c3_Err = components.InputStandart(components.InputStandartProps{
+					Title:       "Обложка",
+					Name:        "cover",
+					TypeInput:   "text",
+					Placeholder: "Ссылка на картинку",
+					Icon:        "",
 				}).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = components.SelectStandart(components.SelectStandartProps{
+					Title:   "Категория",
+					Name:    "category",
+					Options: []string{"Популярное", "Еда", "Животные", "Машины", "Спорт", "Музыка", "Технологии", "Прочее"},
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -136,7 +149,7 @@ func CreateNews() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div id=\"news-result\"></div></section></main>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div id=\"news-result\"></div></section></main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -178,7 +191,7 @@ func CreateNewsStyle() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<style>\n    html, body {\n        height: 100%;\n        margin: 0;\n    }\n    .create-news-page{\n        display: flex;\n        flex-direction: column;\n        height: 100%;\n        width: 100%;\n        max-width: 1512px;\n        margin: auto;\n    } \n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<style>\n    html, body {\n        height: 100%;\n        margin: 0;\n    }\n    .create-news-page{\n        display: flex;\n        flex-direction: column;\n        height: 100%;\n        width: 100%;\n        max-width: 1512px;\n        margin: auto;\n    } \n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -31,11 +31,17 @@ templ CreateNews() {
                     Icon: "",
                     BigText: true, 
                 })
+                @components.InputStandart(components.InputStandartProps{
+                    Title: "Обложка",
+                    Name: "cover",
+                    TypeInput: "text",
+                    Placeholder: "Ссылка на картинку",
+                    Icon: "", 
+                })
                 @components.SelectStandart(components.SelectStandartProps{
                     Title: "Категория",
                     Name: "category",
-                    Options: []string{"Общее", "Обновления", "Важно"},
-                    Selected: "Общее",
+                    Options: []string{"Популярное", "Еда", "Животные","Машины", "Спорт", "Музыка", "Технологии", "Прочее"},
                 })
                 @components.InputStandart(components.InputStandartProps{
                     Title: "Текст",
