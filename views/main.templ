@@ -2,9 +2,11 @@ package views
   
 import "github.com/glebbeliaev/purple_dz/views/layout"
 import "github.com/glebbeliaev/purple_dz/views/components"
+import "github.com/glebbeliaev/purple_dz/internal/news"
+import "github.com/glebbeliaev/purple_dz/views/widgets"
 
   
-templ Main() {
+templ Main(news []news.News, Count,Page int) {
     @layout.Layout(layout.LayoutProps{
         Title: "Новости - всё самое главное",
         MetaDescription: "Сайт новостей",
@@ -61,6 +63,8 @@ templ Main() {
                 ImgLink: "/public/images/banners/banner_music.png",
             })
         }
+
+        @widgets.NewsList(news, Count, Page)
 
         @layout.CarouselPosts("Популярное"){
             @components.CardPost(components.CardPostProps{

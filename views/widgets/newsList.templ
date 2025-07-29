@@ -1,0 +1,38 @@
+package widgets
+
+import (
+    "fmt"
+    "github.com/glebbeliaev/purple_dz/views/components"
+    "github.com/glebbeliaev/purple_dz/internal/news"
+    )
+
+templ NewsList(news []news.News, Count, Page int) {
+    
+    <div class="news-list__wrapper">
+        
+        <div class="news-list">
+            for _, news := range news{
+                @components.CardPost(components.CardPostProps{
+                    Cover: news.Cover,
+                    Title: news.Title,
+                    Description: news.Preview,
+                    
+                })
+            }
+        </div>
+        <div class="news-pagination">
+            <div class="news-pagination__button">
+                if Page != 1{
+                    <img src="/public/icons/chevron-left.svg"/>
+                    <a class="news-pagination__link" href={templ.SafeURL(fmt.Sprintf("/?page=%d", Page-1))}>Предыдущие</a>
+                }
+            </div>
+            <div class="news-pagination__button">
+                if Page != Count{
+                    <a class="news-pagination__link" href={templ.SafeURL(fmt.Sprintf("/?page=%d", Page+1))}>Следующие</a>
+                    <img src="/public/icons/chevron-right.svg"/>
+                }
+            </div>
+        </div>
+    </div>
+}

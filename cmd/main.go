@@ -51,7 +51,7 @@ func main() {
 	newsRepo := news.NewNewsRepository(dbpool)
 
 	//Handlers
-	pages.NewHandler(app, store)
+	pages.NewHandler(app, store, customLogger, newsRepo)
 	register.NewHandler(app, store)
 	registration.NewHandler(app, customLogger, userRepo, store)
 	createnews.NewHandler(app, store, customLogger, userRepo)
