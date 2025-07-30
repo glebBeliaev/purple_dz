@@ -64,7 +64,7 @@ templ Main(news []news.News, Count,Page int) {
             })
         }
 
-        @widgets.NewsList(news, Count, Page)
+        @widgets.NewsList(news, Count, Page, "Популярное")
 
         @layout.CarouselPosts("Популярное"){
             @components.CardPost(components.CardPostProps{

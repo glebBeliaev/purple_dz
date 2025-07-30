@@ -10,7 +10,7 @@ templ CardPost(props CardPostProps) {
     @CardPostStyle()
     <div class="card-post">
         <img class="card-post-cover" src={props.Cover}>
-        <h5>{props.Title}</h5>
+        <h5 class="news-card-title">{props.Title}</h5>
         <span class="card-post-description">{props.Description}</span>
         { children... }
     </div>  
@@ -50,6 +50,14 @@ templ CardPostStyle() {
             height: 190px;
             object-fit: cover;
             border-radius: 12px;
+        }
+        .news-card-title{
+            height: 19px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
         }
     </style> 
 }

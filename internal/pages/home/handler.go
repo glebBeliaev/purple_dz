@@ -35,7 +35,7 @@ func NewHandler(router fiber.Router, storage *session.Store, logger *zerolog.Log
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	PAGE_ITEMS := 2
+	PAGE_ITEMS := 4
 	page := c.QueryInt("page", 1)
 
 	count := int(math.Ceil(float64(h.repository.CountAll() / PAGE_ITEMS)))
