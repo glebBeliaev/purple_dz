@@ -3,27 +3,27 @@ package widgets
 import (
     "fmt"
     "github.com/glebbeliaev/purple_dz/views/components"
-    "github.com/glebbeliaev/purple_dz/internal/news"
+    "github.com/glebbeliaev/purple_dz/internal/models"
     "github.com/glebbeliaev/purple_dz/pkg/dataformat"
     )
 
-templ NewsList(news []news.News, Count, Page int, title string) {
+templ NewsList(block models.CategoryBlock) {
     @NewsListStyle()    
     <div class="news-list__wrapper">
         <div class="news-list-title">
-            @components.TitleSection(title)
+            @components.TitleSection(block.Title)
             <div class="news-pagination">
                 <div class="news-pagination__button">
-                    if Page != 1{
-                        <a class="news-list-nav-btn" href={templ.SafeURL(fmt.Sprintf("/?page=%d", Page-1))}>
+                    if block.Page != 1{
+                        <a class="news-list-nav-btn" href={templ.SafeURL(fmt.Sprintf("/?page=%d", block.Page-1))}>
                             <img src="/public/icons/arrow-left.svg"/>
                         </a>
                         
                     }
                 </div>
                 <div class="news-pagination__button">
-                    if Page != Count{
-                        <a class="news-list-nav-btn" href={templ.SafeURL(fmt.Sprintf("/?page=%d", Page+1))}>
+                    if block.Page != block.Count{
+                        <a class="news-list-nav-btn" href={templ.SafeURL(fmt.Sprintf("/?page=%d", block.Page+1))}>
                             <img src="/public/icons/arrow-right.svg" />
                         </a>
                     }
@@ -31,7 +31,7 @@ templ NewsList(news []news.News, Count, Page int, title string) {
             </div>  
         </div>
         <div class="news-list">
-            for _, news := range news{
+            for _, news := range block.News{
                 @components.CardPost(components.CardPostProps{
                     Cover: news.Cover,
                     Title: news.Title,

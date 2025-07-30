@@ -8,7 +8,7 @@ import "github.com/glebbeliaev/purple_dz/internal/models"
 
 
   
-templ Main(latest, popular models.CategoryBlock ) {
+templ NewsFood(newsFood models.CategoryBlock ) {
     @layout.Layout(layout.LayoutProps{
         Title: "Новости - всё самое главное",
         MetaDescription: "Сайт новостей",
@@ -53,42 +53,11 @@ templ Main(latest, popular models.CategoryBlock ) {
                 Img: "/public/images/categories/categoryMore.png",
             })
         }
-        @layout.Banners(){
-            @components.CardBanner(components.BannerCardProps{
-                Headline: "Как безопасно водить",
-                Description: "Длинный текст про то, как можно безопасно водить автомобиль.",
-                ImgLink: "/public/images/banners/banner_car.png",
-            })
-            @components.CardBanner(components.BannerCardProps{
-                Headline: "Как безопасно водить",
-                Description: "Сегодня мы рассмотрим технику быстрого создания музыки за счёт использования особой техники",
-                ImgLink: "/public/images/banners/banner_music.png",
-            })
-        }
 
-        @widgets.NewsList(latest)
-        @widgets.NewsList(popular)
+        @widgets.NewsList(newsFood)
 
         <div class="test"></div>
     </main>
     @layout.Footer()
     }
-}
-
-templ MainStyle() {
-    <style>
-        .main-page{
-            width: 100%;
-            max-width: 1512px;
-            display: flex;
-            flex-direction: column;
-            gap: 45px;
-            margin: auto;
-        }
-        .test{
-            height: 50vh;
-        }
-
-    </style>
-    
 }

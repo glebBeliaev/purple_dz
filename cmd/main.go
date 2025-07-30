@@ -7,6 +7,7 @@ import (
 	"github.com/glebbeliaev/purple_dz/internal/news"
 	createnews "github.com/glebbeliaev/purple_dz/internal/pages/createNews"
 	pages "github.com/glebbeliaev/purple_dz/internal/pages/home"
+	"github.com/glebbeliaev/purple_dz/internal/pages/newsFood"
 	"github.com/glebbeliaev/purple_dz/internal/pages/register"
 	"github.com/glebbeliaev/purple_dz/internal/registration"
 	"github.com/glebbeliaev/purple_dz/pkg/database"
@@ -56,6 +57,7 @@ func main() {
 	registration.NewHandler(app, customLogger, userRepo, store)
 	createnews.NewHandler(app, store, customLogger, userRepo)
 	news.NewHandler(app, customLogger, newsRepo, store)
+	newsFood.NewHandler(app, store, customLogger, newsRepo)
 	customLogger.Info().Msg("Server started")
 
 	app.Listen(":3000")

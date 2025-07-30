@@ -49,3 +49,27 @@ func (r *NewsRepository) GetAll(limit, offset int) ([]News, error) {
 	}
 	return news, nil
 }
+
+func (r *NewsRepository) GetByCategory(category string, limit, offset int) ([]News, error) {
+	query := `SELECT * FROM news WHERE category = @category ORDER BY datacreate DESC LIMIT @limit OFFSET @offset`
+	args := pgx.NamedArgs{
+		"category": category,
+		"limit":    limit,
+		"offset":   offset,
+	}
+	rows, err := r.Dbpool.Query(context.Background(), query, args)
+	if err != nil {
+		return nil, err
+	}
+	return pgx.CollectRows(rows, pgx.RowToStructByName[News])
+}
+
+func (r *NewsRepository) CountByCategory(category string) int {
+	query := `SELECT COUNT(*) FROM news WHERE category = $1`
+	var count int
+	err := r.Dbpool.QueryRow(context.Background(), query, category).Scan(&count)
+	if err != nil {
+		return 0
+	}
+	return count
+}

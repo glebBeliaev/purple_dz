@@ -1,6 +1,8 @@
 package news
 
-import "time"
+import (
+	"time"
+)
 
 type News struct {
 	Id        int       `db:"id"`

@@ -1,4 +1,4 @@
-package pages
+package newsFood
 
 import (
 	"math"
@@ -12,39 +12,27 @@ import (
 	"github.com/rs/zerolog"
 )
 
-type HomeHandler struct {
+type NewsFoodHandler struct {
 	router        fiber.Router
 	storage       *session.Store
 	repository    *news.NewsRepository
 	cusstomLogger *zerolog.Logger
 }
 
-type Catalog struct {
-	CategoryName string
-}
-
 func NewHandler(router fiber.Router, storage *session.Store, logger *zerolog.Logger, repository *news.NewsRepository) {
-	h := &HomeHandler{
+	h := &NewsFoodHandler{
 		router:        router,
 		storage:       storage,
 		cusstomLogger: logger,
 		repository:    repository,
 	}
 
-	h.router.Get("/", h.home)
-	h.router.Get("/404", h.error)
+	h.router.Get("/food", h.newsFood)
 }
 
-func (h *HomeHandler) home(c *fiber.Ctx) error {
-	PAGE_ITEMS := 4
-	page := c.QueryInt("page", 1)
+func (h *NewsFoodHandler) newsFood(c *fiber.Ctx) error {
+	PAGE_ITEMS := 8
 
-	count := int(math.Ceil(float64(h.repository.CountAll() / PAGE_ITEMS)))
-	news, err := h.repository.GetAll(PAGE_ITEMS, (page-1)*PAGE_ITEMS)
-	if err != nil {
-		h.cusstomLogger.Error().Msg(err.Error())
-		return c.SendStatus(500)
-	}
 	// --- Популярные (по категории)
 	popularPage := c.QueryInt("popularPage", 1)
 
@@ -57,24 +45,13 @@ func (h *HomeHandler) home(c *fiber.Ctx) error {
 		return c.SendStatus(500)
 	}
 
-	popularBlock := models.CategoryBlock{
+	foodBlock := models.CategoryBlock{
 		Title:      "Популярное",
 		News:       popularNews,
 		Page:       popularPage,
 		Count:      popularCount,
 		QueryParam: "popularPage",
 	}
-	latestBlock := models.CategoryBlock{
-		Title:      "Последние новости",
-		News:       news,
-		Page:       page,
-		Count:      count,
-		QueryParam: "page",
-	}
-	component := views.Main(latestBlock, popularBlock)
+	component := views.NewsFood(foodBlock)
 	return tadapter.Render(c, component, fiber.StatusOK)
-}
-
-func (h *HomeHandler) error(c *fiber.Ctx) error {
-	return c.SendString("Error")
 }
