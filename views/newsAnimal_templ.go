@@ -13,7 +13,7 @@ import "github.com/glebbeliaev/purple_dz/views/layout"
 import "github.com/glebbeliaev/purple_dz/views/widgets"
 import "github.com/glebbeliaev/purple_dz/internal/models"
 
-func NewsFood(newsFood models.CategoryBlock) templ.Component {
+func NewsAnimal(newsAnimal models.CategoryBlock) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -62,7 +62,7 @@ func NewsFood(newsFood models.CategoryBlock) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = widgets.NewsList(newsFood).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = widgets.NewsList(newsAnimal).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -77,8 +77,8 @@ func NewsFood(newsFood models.CategoryBlock) templ.Component {
 			return nil
 		})
 		templ_7745c5c3_Err = layout.Layout(layout.LayoutProps{
-			Title:           "Новости про еду",
-			MetaDescription: "Еда - все последние и главные новости",
+			Title:           "Новости про животных",
+			MetaDescription: "Животные - все последние и главные новости",
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

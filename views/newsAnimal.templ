@@ -7,16 +7,16 @@ import "github.com/glebbeliaev/purple_dz/internal/models"
 
 
   
-templ NewsFood(newsFood models.CategoryBlock ) {
+templ NewsAnimal(newsAnimal models.CategoryBlock ) {
     @layout.Layout(layout.LayoutProps{
-        Title: "Новости про еду",
-        MetaDescription: "Еда - все последние и главные новости",
+        Title: "Новости про животных",
+        MetaDescription: "Животные - все последние и главные новости",
     }){
     @MainStyle()
     <main class="main-page">
         @layout.Header()
         @widgets.CategoryTags(models.AllCategories)
-        @widgets.NewsList(newsFood)
+        @widgets.NewsList(newsAnimal)
         <div class="test"></div>
     </main>
     @layout.Footer()

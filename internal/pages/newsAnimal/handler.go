@@ -1,4 +1,4 @@
-package newsFood
+package newsAnimal
 
 import (
 	"github.com/glebbeliaev/purple_dz/internal/models"
@@ -10,7 +10,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-type NewsFoodHandler struct {
+type NewsAnimalHandler struct {
 	router        fiber.Router
 	storage       *session.Store
 	repository    *news.NewsRepository
@@ -18,23 +18,23 @@ type NewsFoodHandler struct {
 }
 
 func NewHandler(router fiber.Router, storage *session.Store, logger *zerolog.Logger, repository *news.NewsRepository) {
-	h := &NewsFoodHandler{
+	h := &NewsAnimalHandler{
 		router:        router,
 		storage:       storage,
 		cusstomLogger: logger,
 		repository:    repository,
 	}
 
-	h.router.Get("/food", h.newsFood)
+	h.router.Get("/animal", h.newsAnimal)
 }
 
-func (h *NewsFoodHandler) newsFood(c *fiber.Ctx) error {
-	foodBlock, err := models.BuildCategoryBlock(c, h.repository, "Еда", "Еда", "foodPage", 8)
+func (h *NewsAnimalHandler) newsAnimal(c *fiber.Ctx) error {
+	animalBlock, err := models.BuildCategoryBlock(c, h.repository, "Животные", "Животные", "animalPage", 8)
 	if err != nil {
-		h.cusstomLogger.Error().Msg("Ошибка при загрузке категории Еда: " + err.Error())
+		h.cusstomLogger.Error().Msg("Ошибка при загрузке категории Животные: " + err.Error())
 		return c.SendStatus(500)
 	}
 
-	component := views.NewsFood(foodBlock)
+	component := views.NewsFood(animalBlock)
 	return tadapter.Render(c, component, fiber.StatusOK)
 }

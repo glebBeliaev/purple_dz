@@ -1,8 +1,6 @@
 package pages
 
 import (
-	"math"
-
 	"github.com/glebbeliaev/purple_dz/internal/models"
 	"github.com/glebbeliaev/purple_dz/internal/news"
 	"github.com/glebbeliaev/purple_dz/pkg/tadapter"
@@ -36,40 +34,16 @@ func NewHandler(router fiber.Router, storage *session.Store, logger *zerolog.Log
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	PAGE_ITEMS := 4
-	page := c.QueryInt("page", 1)
-
-	count := int(math.Ceil(float64(h.repository.CountAll() / PAGE_ITEMS)))
-	news, err := h.repository.GetAll(PAGE_ITEMS, (page-1)*PAGE_ITEMS)
+	latestBlock, err := models.BuildCategoryBlock(c, h.repository, "", "Последние новости", "page", 4)
 	if err != nil {
-		h.cusstomLogger.Error().Msg(err.Error())
+		h.cusstomLogger.Error().Msg("Ошибка при загрузке последних новостей: " + err.Error())
 		return c.SendStatus(500)
 	}
-	// --- Популярные (по категории)
-	popularPage := c.QueryInt("popularPage", 1)
 
-	popularTotal := h.repository.CountByCategory("Популярное")
-	popularCount := int(math.Ceil(float64(popularTotal) / float64(PAGE_ITEMS)))
-
-	popularNews, err := h.repository.GetByCategory("Популярное", PAGE_ITEMS, (popularPage-1)*PAGE_ITEMS)
+	popularBlock, err := models.BuildCategoryBlock(c, h.repository, "Популярное", "Популярное", "popularPage", 4)
 	if err != nil {
 		h.cusstomLogger.Error().Msg("Ошибка при загрузке популярных новостей: " + err.Error())
 		return c.SendStatus(500)
-	}
-
-	popularBlock := models.CategoryBlock{
-		Title:      "Популярное",
-		News:       popularNews,
-		Page:       popularPage,
-		Count:      popularCount,
-		QueryParam: "popularPage",
-	}
-	latestBlock := models.CategoryBlock{
-		Title:      "Последние новости",
-		News:       news,
-		Page:       page,
-		Count:      count,
-		QueryParam: "page",
 	}
 	component := views.Main(latestBlock, popularBlock)
 	return tadapter.Render(c, component, fiber.StatusOK)

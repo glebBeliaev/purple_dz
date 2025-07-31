@@ -1,0 +1,19 @@
+package widgets
+
+import (
+	"github.com/glebbeliaev/purple_dz/views/components"
+	"github.com/glebbeliaev/purple_dz/internal/models"
+	"github.com/glebbeliaev/purple_dz/views/layout"
+)
+
+templ CategoryTags(items []models.CategoryButton) {
+	@layout.TopTags() {
+		for _, item := range items {
+			@components.CardCategory(components.CategoryCardProps{
+				Tag:  item.Tag,
+				Link: item.Link,
+				Img:  item.Img,
+			})
+		}
+	}
+}

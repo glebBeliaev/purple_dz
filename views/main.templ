@@ -16,43 +16,7 @@ templ Main(latest, popular models.CategoryBlock ) {
     @MainStyle()
     <main class="main-page">
         @layout.Header()
-        @layout.TopTags(){
-            @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Еда",
-                Link: "",
-                Img: "/public/images/categories/categoryFood.png",
-            })
-             @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Животные",
-                Link: "",
-                Img: "/public/images/categories/categoryAnimal.png",
-            })
-             @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Машины",
-                Link: "",
-                Img: "/public/images/categories/categoryCars.png",
-            })
-             @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Спорт",
-                Link: "",
-                Img: "/public/images/categories/categorySport.png",
-            })
-             @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Музыка",
-                Link: "",
-                Img: "/public/images/categories/categoryMusic.png",
-            })
-             @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Технологии",
-                Link: "",
-                Img: "/public/images/categories/categoryTechnology.png",
-            })
-             @components.CardCategory(components.CategoryCardProps{
-                Tag: "#Прочее",
-                Link: "",
-                Img: "/public/images/categories/categoryMore.png",
-            })
-        }
+        @widgets.CategoryTags(models.AllCategories)
         @layout.Banners(){
             @components.CardBanner(components.BannerCardProps{
                 Headline: "Как безопасно водить",
