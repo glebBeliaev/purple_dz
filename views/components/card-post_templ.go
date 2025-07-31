@@ -52,14 +52,14 @@ func CardPost(props CardPostProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><h5>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><h5 class=\"news-card-title\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(props.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/card-post.templ`, Line: 13, Col: 24}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/components/card-post.templ`, Line: 13, Col: 48}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -115,7 +115,7 @@ func CardPostStyle() templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n        .card-post{\n            display: flex;\n            flex-direction: column;\n            padding: 12px;\n            color: var(--color-white);\n            box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.07);\n            height: 389px;\n            width: 100%;\n            border-radius: 12px;\n            gap: 16px;\n        }\n        .card-post h5{\n            color: var(--color-black);\n            height: 19px;\n        }\n        .card-post span{\n            color: var(--color-black-75);\n            font-size: 14px;\n            letter-spacing: 0.25px;\n            line-height: 20px;\n            height: 40px;\n            width: 100%;\n            display: -webkit-box;\n            -webkit-line-clamp: 2;\n            -webkit-box-orient: vertical;\n            overflow: hidden;\n        }\n        .card-post-cover{\n            width: 100%;\n            height: 190px;\n            object-fit: cover;\n            border-radius: 12px;\n        }\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<style>\n        .card-post{\n            display: flex;\n            flex-direction: column;\n            padding: 12px;\n            color: var(--color-white);\n            box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.07);\n            height: 389px;\n            max-width: 360px;\n            border-radius: 12px;\n            gap: 16px;\n        }\n        .card-post h5{\n            color: var(--color-black);\n            height: 19px;\n        }\n        .card-post span{\n            color: var(--color-black-75);\n            font-size: 14px;\n            letter-spacing: 0.25px;\n            line-height: 20px;\n            height: 40px;\n            width: 100%;\n            display: -webkit-box;\n            -webkit-line-clamp: 2;\n            -webkit-box-orient: vertical;\n            overflow: hidden;\n        }\n        .card-post-cover{\n            width: 100%;\n            height: 190px;\n            object-fit: cover;\n            border-radius: 12px;\n        }\n        .news-card-title{\n            height: 19px;\n            display: -webkit-box;\n            -webkit-line-clamp: 1;\n            -webkit-box-orient: vertical;\n            overflow: hidden;\n\n        }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

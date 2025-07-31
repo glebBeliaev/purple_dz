@@ -1,0 +1,60 @@
+package components
+
+type SelectStandartProps struct {
+	Title     string
+	Name      string
+	Options   []string // варианты выбора
+	Selected  string   // текущее выбранное значение
+}
+
+templ SelectStandart(props SelectStandartProps) {
+	@SelectStandartStyle() 
+
+	<div class="select-standart">
+		if props.Title != "" {
+			<h5>{props.Title}</h5>
+		}
+		<div class="select-standart-wrapper">
+			<select name={props.Name} class="select-template">
+				for _, option := range props.Options {
+					<option selected={option == props.Selected}>{option}</option>
+				}
+			</select>
+		</div>
+	</div>
+}
+
+templ SelectStandartStyle() {
+    <style>
+    .select-standart{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0;
+    }
+
+    .select-template {
+        appearance: none;            /* убирает стрелки браузера */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        height: 48px;
+        width: 100%;
+        padding: 0 40px 0 16px;       /* справа — под иконку */
+        border: none;
+        border-radius: 12px;
+        background-color: var(--color-gray);
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--color-black);
+        outline: none;
+
+        background-image: url("/public/icons/arrow-down.svg");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        cursor: pointer;
+    }
+</style>
+
+}

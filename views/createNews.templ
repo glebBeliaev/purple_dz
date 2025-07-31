@@ -17,27 +17,39 @@ templ CreateNews() {
         <section class="form-section">
             @widgets.CreateNewsForm("Создание новости"){
                 @components.InputStandart(components.InputStandartProps{
-                Title: "Заголовок",
-                Name: "title",
-                TypeInput: "text",
-                Placeholder: "",
-                Icon: "", 
+                    Title: "Заголовок",
+                    Name: "title",
+                    TypeInput: "text",
+                    Placeholder: "",
+                    Icon: "", 
                 })
                 @components.InputStandart(components.InputStandartProps{
-                Title: "Превью",
-                Name: "preview",
-                TypeInput: "text",
-                Placeholder: "",
-                Icon: "",
-                BigText: true, 
+                    Title: "Превью",
+                    Name: "preview",
+                    TypeInput: "text",
+                    Placeholder: "",
+                    Icon: "",
+                    BigText: true, 
                 })
                 @components.InputStandart(components.InputStandartProps{
-                Title: "Текст",
-                Name: "text",
-                TypeInput: "text",
-                Placeholder: "",
-                Icon: "",
-                BigText: true, 
+                    Title: "Обложка",
+                    Name: "cover",
+                    TypeInput: "text",
+                    Placeholder: "Ссылка на картинку",
+                    Icon: "", 
+                })
+                @components.SelectStandart(components.SelectStandartProps{
+                    Title: "Категория",
+                    Name: "category",
+                    Options: []string{"Популярное", "Еда", "Животные","Машины", "Спорт", "Музыка", "Технологии", "Прочее"},
+                })
+                @components.InputStandart(components.InputStandartProps{
+                    Title: "Текст",
+                    Name: "content",
+                    TypeInput: "text",
+                    Placeholder: "",
+                    Icon: "",
+                    BigText: true, 
                 })
             }
             <div id="news-result"></div>

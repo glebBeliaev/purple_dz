@@ -13,19 +13,34 @@ templ InputStandart(props InputStandartProps) {
     @InputStandartStyle()
     
     <div class="input-standart">
-        if props.Title != ""{
+        if props.Title != "" {
             <h5>{props.Title}</h5>
         }
         <div class="input-standart-wrapper">
-            <input class={"input-template",templ.KV("input-template-BigText", props.BigText), templ.KV("input-template-default", !props.BigText)} type={props.TypeInput} placeholder={props.Placeholder} name={props.Name}/>
-            if props.Icon !=""{
+            if props.BigText {
+                <textarea
+                    class={"input-template input-template-BigText"}
+                    name={props.Name}
+                    placeholder={props.Placeholder}
+                    rows="4"
+                ></textarea>
+            } else {
+                <input
+                    class={"input-template input-template-default"}
+                    type={props.TypeInput}
+                    name={props.Name}
+                    placeholder={props.Placeholder}
+                />
+            }
+            if props.Icon != "" {
                 <button type="submit" class="search-button">
                     <img src={props.Icon} alt="Поиск" />
                 </button>
             }
         </div>
-    </div> 
+    </div>
 }
+
 
 templ InputStandartStyle() {
 <style>
@@ -82,5 +97,27 @@ templ InputStandartStyle() {
         font-size: 16px;
         color: var(--color-black);
     }
+    .input-template-BigText {
+    height: 112px;
+    resize: vertical; /* можно менять размер вручную */
+    overflow-y: auto;
+    line-height: 1.4;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.input-standart-wrapper textarea.input-template {
+    width: 100%;
+    padding: 15px 16px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--color-gray);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-black);
+    outline: none;
+    resize: none;
+}
+
 </style>    
 }
