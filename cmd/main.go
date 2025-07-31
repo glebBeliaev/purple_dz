@@ -5,10 +5,9 @@ import (
 
 	"github.com/glebbeliaev/purple_dz/config"
 	"github.com/glebbeliaev/purple_dz/internal/news"
+	"github.com/glebbeliaev/purple_dz/internal/pages/category"
 	createnews "github.com/glebbeliaev/purple_dz/internal/pages/createNews"
 	pages "github.com/glebbeliaev/purple_dz/internal/pages/home"
-	"github.com/glebbeliaev/purple_dz/internal/pages/newsAnimal"
-	"github.com/glebbeliaev/purple_dz/internal/pages/newsFood"
 	"github.com/glebbeliaev/purple_dz/internal/pages/register"
 	"github.com/glebbeliaev/purple_dz/internal/registration"
 	"github.com/glebbeliaev/purple_dz/pkg/database"
@@ -58,8 +57,8 @@ func main() {
 	registration.NewHandler(app, customLogger, userRepo, store)
 	createnews.NewHandler(app, store, customLogger, userRepo)
 	news.NewHandler(app, customLogger, newsRepo, store)
-	newsFood.NewHandler(app, store, customLogger, newsRepo)
-	newsAnimal.NewHandler(app, store, customLogger, newsRepo)
+	category.NewHandler(app, store, customLogger, newsRepo)
+
 	customLogger.Info().Msg("Server started")
 
 	app.Listen(":3000")

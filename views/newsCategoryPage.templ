@@ -1,0 +1,23 @@
+package views
+
+import (
+	"github.com/glebbeliaev/purple_dz/views/layout"
+	"github.com/glebbeliaev/purple_dz/views/widgets"
+	"github.com/glebbeliaev/purple_dz/internal/models"
+)
+
+templ NewsCategoryPage(block models.CategoryBlock) {
+	@layout.Layout(layout.LayoutProps{
+		Title: block.Title + " - Новости",
+		MetaDescription: block.Title + " - все последние и главные новости",
+	}) {
+		@MainStyle()
+		<main class="main-page">
+			@layout.Header()
+			@widgets.CategoryTags(models.AllCategories)
+			@widgets.NewsList(block)
+			<div class="test"></div>
+		</main>
+		@layout.Footer()
+	}
+}
